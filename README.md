@@ -3,4 +3,5 @@ Technologies utilisées :
 - HTML, CSS, JavaScript
 - Next.js
 - Supabase
+
 Auteur : Théo Marie 
