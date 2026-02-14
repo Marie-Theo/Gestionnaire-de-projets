@@ -2,31 +2,51 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
+import Projet from '@/components/projet';
 
 export default function getProjet () {
     const [projets, setProjets] = useState<any[]>([]);
     const [etat, setEtat] = useState<any[]>([]);
     const [outil, setOutil] = useState<any[]>([]);
     const [outils, setOutils] = useState<any[]>([]);
+    const [users, setUsers] = useState<any[]>([]);
+    const [user, setUser] = useState<any[]>([]);
 
     useEffect(() => {
         async function fetchProjets() {
-        const { data, error } = await supabase
-            .from('projets')
-            .select('*')
-            .eq("public", true);
-            console.log("fetching projets...");
+        // Récupérer les projets publics si l'utilisateur n'est pas connecté, sinon récupérer les projets de l'utilisateur connecté
+        if (user.length === 0) {
+            const { data, error } = await supabase
+                .from('projets')
+                .select('id, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
+                .eq("public", true);
+                console.log("fetching projets...");
 
-            if (error) console.error(error);
-            else {
-                console.log(data);
-                setProjets(data);
-                console.log(projets);
-            };
+                if (error) console.error(error);
+                else {
+                    console.log(data);
+                    setProjets(data || []);
+                };
+        } else {
+            const { data, error } = await supabase
+                .from('projets')
+                .select('id, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
+                .eq("public", true)
+                .or("id_user", user[0].id);
+                console.log("fetching projets...");
+
+                if (error) console.error(error);
+                else {
+                    console.log(data);
+                    setProjets(data || []);
+                };
+            }
         }
 
-        fetchProjets();
-    }, []);
+        if (projets.length === 0) {
+            fetchProjets();
+        }
+    }, [user]);
 
     useEffect(() => {
         async function fetchEtat() {
@@ -38,12 +58,13 @@ export default function getProjet () {
             if (error) console.error(error);
             else {
                 console.log(data);
-                setEtat(data);
-                console.log(etat);
+                setEtat(data || []);
             };
         }
 
+    if (etat.length === 0) {
         fetchEtat();
+    }
     }, []);
 
     useEffect(() => {
@@ -56,36 +77,59 @@ export default function getProjet () {
             if (error) console.error(error);
             else {
                 console.log(data);
-                setOutil(data);
-                console.log(outil);
+                setOutil(data || []);
             };
         }
 
+    if (outil.length === 0) {
         fetchOutil();
+    }
     }, []);
 
     useEffect(() => {
         async function fetchOutils() {
         const { data, error } = await supabase
             .from('outils')
-            .select('*');
+            .select('id, id_projet, outil:outil ( name )');
             console.log("fetching outils...");
 
             if (error) console.error(error);
             else {
                 console.log(data);
-                setOutils(data);
-                console.log(outils);
+                setOutils(data || []);
             };
         }
 
+    if (outils.length === 0) {
         fetchOutils();
+    }
+    }, []);
+    
+    useEffect(() => {
+        async function fetchUsers() {
+        const { data, error } = await supabase
+            .from('users')
+            .select(' id, name, theme, created_at ');
+            console.log("fetching users...");
+
+            if (error) console.error(error);
+            else {
+                console.log(data);
+                setUsers(data || []);
+            };
+        }
+
+    if (users.length === 0) {
+        fetchUsers();
+    }
     }, []);
 
     return {
         projets,
         etat,
         outil,
-        outils
+        outils,
+        users,
+        user
     }
 }
