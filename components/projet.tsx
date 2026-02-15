@@ -1,12 +1,16 @@
 import { Card, CardHeader, CardAction, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge"
 import BadgesOutils from "./badgesOutils";
+import { tools } from "./tools";
 
 interface projetProps {
     id: number;
     title: string;
     presentation: string;
-    etat: any;
+    etat: {
+        name: string,
+        couleur: string
+    };
     public: boolean;
 }
 
@@ -23,20 +27,18 @@ export default function Projet({props}: {props:{projet: projetProps, outils: Out
     const { projet, outils } = props;
     const id_projet = projet.id;
 
-    console.log("projets:", projet);
-    console.log("outils:", outils);
-
-    return <Card className="max-w-100 pt-4">
+    return (
+    <Card className="max-w-100 pt-4 mb-4 relative pb-10">
         <CardHeader>
             <CardAction>
-                <Badge variant="outline">{projet.etat.name}</Badge>
-                <Badge variant="outline" className="ml-2">{projet.public ? 'Public' : 'Privé'}</Badge>
+                <Badge variant="outline" className={tools.defineBadgecolor(projet.etat.couleur)}>{projet.etat.name}</Badge> 
+                <Badge variant="outline" className={tools.definePublicBadgeColor(projet.public)}>{projet.public ? 'Public' : 'Privé'}</Badge>
             </CardAction>
             <CardTitle>{projet.title}</CardTitle>
-            <CardDescription>{projet.presentation}</CardDescription>
         </CardHeader>
-        <CardFooter>
+        <CardDescription className="pl-6 pr-5">{'    '+projet.presentation}</CardDescription>
+        <CardFooter className="absolute bottom-3">
             <BadgesOutils props={{id_projet,outils}} />
         </CardFooter>
-    </Card>;
+    </Card>);
 }

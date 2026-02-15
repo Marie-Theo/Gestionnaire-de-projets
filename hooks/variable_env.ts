@@ -6,6 +6,7 @@ import Projet from '@/components/projet';
 
 export default function getProjet () {
     const [projets, setProjets] = useState<any[]>([]);
+    const [lastProjets, setLastProjets] = useState<any[]>([]);
     const [etat, setEtat] = useState<any[]>([]);
     const [outil, setOutil] = useState<any[]>([]);
     const [outils, setOutils] = useState<any[]>([]);
@@ -18,8 +19,9 @@ export default function getProjet () {
         if (user.length === 0) {
             const { data, error } = await supabase
                 .from('projets')
-                .select('id, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
-                .eq("public", true);
+                .select('id, created_at, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
+                .eq("public", true)
+                .order('id_etat', { ascending: false });
                 console.log("fetching projets...");
 
                 if (error) console.error(error);
@@ -30,9 +32,10 @@ export default function getProjet () {
         } else {
             const { data, error } = await supabase
                 .from('projets')
-                .select('id, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
+                .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
                 .eq("public", true)
-                .or("id_user", user[0].id);
+                .or("id_user", user[0].id)
+                .order('id_etat', { ascending: false });
                 console.log("fetching projets...");
 
                 if (error) console.error(error);
@@ -45,6 +48,46 @@ export default function getProjet () {
 
         if (projets.length === 0) {
             fetchProjets();
+        }
+    }, [user]);
+    
+    useEffect(() => {
+        async function fetchLastProjets() {
+        // Récupérer les projets publics si l'utilisateur n'est pas connecté vu récemment, sinon récupérer les projets de l'utilisateur connecté qui ont été vus récemment
+        if (user.length === 0) {
+            const { data, error } = await supabase
+                .from('projets')
+                .select('id, created_at, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
+                .eq("public", true)
+                .order('seen_at', { ascending: false })
+                .limit(4);
+                console.log("fetching last seen projets...");
+
+                if (error) console.error(error);
+                else {
+                    console.log(data);
+                    setLastProjets(data || []);
+                };
+        } else {
+            const { data, error } = await supabase
+                .from('projets')
+                .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
+                .eq("public", true)
+                .or("id_user", user[0].id)
+                .order('seen_at', { ascending: false })
+                .limit(4);
+                console.log("fetching last seen projets...");
+
+                if (error) console.error(error);
+                else {
+                    console.log(data);
+                    setLastProjets(data || []);
+                };
+            }
+        }
+
+        if (lastProjets.length === 0) {
+            fetchLastProjets();
         }
     }, [user]);
 
@@ -126,6 +169,7 @@ export default function getProjet () {
 
     return {
         projets,
+        lastProjets,
         etat,
         outil,
         outils,

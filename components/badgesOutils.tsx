@@ -15,7 +15,7 @@ export default function BadgesOutils({props}: {props:{id_projet: number,outils :
     return (
     outils.map((entry: any) => {
         if (entry.id_projet === id_projet) {
-            return <Badge variant="outline" className="mr-1" key={entry.id}>{entry.outil.name}</Badge>
+            return <Badge variant="secondary" className="mr-1" key={entry.id}>{entry.outil.name}</Badge>
         }
     }));
     
