@@ -5,7 +5,7 @@ interface OutilsProps {
     id_projet: number;
     outil: {
         name: string;
-    }
+    }[];
 }
 
 export default function BadgesOutils({props}: {props:{id_projet: number,outils : OutilsProps[]}}) {

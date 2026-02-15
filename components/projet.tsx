@@ -19,7 +19,7 @@ interface OutilsProps {
     id_projet: number;
     outil: {
         name: string;
-    }
+    }[];
 }
 
 export default function Projet({props}: {props:{projet: projetProps, outils: OutilsProps[]}}) {

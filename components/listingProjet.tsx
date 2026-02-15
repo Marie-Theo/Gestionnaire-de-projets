@@ -13,7 +13,7 @@ interface OutilsProps {
     id_projet: number;
     outil: {
         name: string;
-    }
+    }[];
 }
 
 export default function ListingProjet({props}: {props:{projets: projetProps[], outils: OutilsProps[],title: string}}) {

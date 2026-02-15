@@ -2,21 +2,46 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
-import Projet from '@/components/projet';
+
+interface projetProps {
+    id: number;
+    title: string;
+    presentation: string;
+    etat: any;
+    public: boolean;
+}
+
+interface OutilsProps {
+    id: number;
+    id_projet: number;
+    outil: {
+        name: any;
+    }[];
+}
+
+interface userProps {
+    id: number;
+    created_at: string;
+    name: string;
+    theme: string;
+}
+
 
 export default function getProjet () {
-    const [projets, setProjets] = useState<any[]>([]);
+    const [projets, setProjets] = useState<projetProps[]>([]);
     const [lastProjets, setLastProjets] = useState<any[]>([]);
     const [etat, setEtat] = useState<any[]>([]);
     const [outil, setOutil] = useState<any[]>([]);
-    const [outils, setOutils] = useState<any[]>([]);
+    const [outils, setOutils] = useState<OutilsProps[]>([]);
     const [users, setUsers] = useState<any[]>([]);
-    const [user, setUser] = useState<any[]>([]);
+    const [user, setUser] = useState<userProps>({ id: 0, created_at: '', name: '', theme: '' });
+    const id_user:any = user.id;
+    const [page, setPage] = useState<string>("accueil");
 
     useEffect(() => {
         async function fetchProjets() {
         // Récupérer les projets publics si l'utilisateur n'est pas connecté, sinon récupérer les projets de l'utilisateur connecté
-        if (user.length === 0) {
+        if (user.id === 0) {
             const { data, error } = await supabase
                 .from('projets')
                 .select('id, created_at, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
@@ -34,7 +59,7 @@ export default function getProjet () {
                 .from('projets')
                 .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
                 .eq("public", true)
-                .or("id_user", user[0].id)
+                .or("id_user", id_user)
                 .order('id_etat', { ascending: false });
                 console.log("fetching projets...");
 
@@ -54,7 +79,7 @@ export default function getProjet () {
     useEffect(() => {
         async function fetchLastProjets() {
         // Récupérer les projets publics si l'utilisateur n'est pas connecté vu récemment, sinon récupérer les projets de l'utilisateur connecté qui ont été vus récemment
-        if (user.length === 0) {
+        if (user.id === 0) {
             const { data, error } = await supabase
                 .from('projets')
                 .select('id, created_at, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
@@ -73,7 +98,7 @@ export default function getProjet () {
                 .from('projets')
                 .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
                 .eq("public", true)
-                .or("id_user", user[0].id)
+                .or("id_user", id_user)
                 .order('seen_at', { ascending: false })
                 .limit(4);
                 console.log("fetching last seen projets...");
@@ -174,6 +199,7 @@ export default function getProjet () {
         outil,
         outils,
         users,
-        user
+        user,
+        page, setPage
     }
 }
