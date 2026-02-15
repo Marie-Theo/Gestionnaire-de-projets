@@ -36,7 +36,7 @@ export default function getProjet () {
     const [users, setUsers] = useState<any[]>([]);
     const [user, setUser] = useState<userProps>({ id: 0, created_at: '', name: '', theme: '' });
     const id_user:any = user.id;
-    const [page, setPage] = useState<string>("accueil");
+    const [page, setPage] = useState<string>("projets");
 
     useEffect(() => {
         async function fetchProjets() {

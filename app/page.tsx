@@ -16,7 +16,7 @@ export default function Home() {
 	}
 
 	return (
-	<section id="accueil" className="pl-[10%] pr-[10%] pt-10">
+	<section className="pl-[10%] pr-[10%] pt-10 pb-[5%]">
 		{page === "projets" ? (
 			<Index props={{projets, outil, outils, etat, users, lastProjets, setPage}} />
 		// ) : page === "a-propos" ? (
