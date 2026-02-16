@@ -9,7 +9,7 @@ interface userProps {
 export default function PresentationUser(user:userProps){
 
     return(
-        <div className="col-span-2">
+        <div className="md:col-span-2 mb-5 flex mb-5">
             {user.name}
         </div>
     );
