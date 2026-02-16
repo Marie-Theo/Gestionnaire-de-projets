@@ -1,10 +1,10 @@
 "use client"
 
-import getProjet from '../hooks/variable_env';
-import Menu from '../components/Menu';
-import Index from '../components/index';
-import Article from '../components/article';
-import FormConnexion from '../components/Connexion';
+import getProjet from '@/hooks/variable_env';
+import Menu from '@/components/Menu';
+import Index from '@/components/page projets/index';
+import Article from '@/components/page projet/article';
+import FormConnexion from '@/components/page connexion/Connexion';
 
 export default function Home() {
 

@@ -5,8 +5,8 @@ import { Label } from "@/components/ui/label";
 import { useRef, useState } from "react";
 import sha256 from "@/components/sha256";
 import { supabase } from "@/lib/supabaseClient";
-import fetchProjet from "@/components/fetchProjet";
-import fetchLastSeenProjet from "@/components/fetchProjet";
+import fetchProjet from "@/components/fetch/fetchProjet";
+import fetchLastSeenProjet from "@/components/fetch/fetchProjet";
 
 interface userProps {
     id: number;

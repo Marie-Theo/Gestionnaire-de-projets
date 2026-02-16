@@ -1,6 +1,4 @@
 import { Card } from "@/components/ui/card";
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { Label } from "@/components/ui/label";
 import { Button } from "./ui/button";
 import { tools } from "./tools";
 

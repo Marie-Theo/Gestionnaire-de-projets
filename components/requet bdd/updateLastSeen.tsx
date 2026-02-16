@@ -1,4 +1,4 @@
-import { supabase } from "../lib/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import moment from 'moment';
 
 export default function updateLastSeen(id_projet: number) {

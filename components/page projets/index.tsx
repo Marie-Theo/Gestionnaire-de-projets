@@ -1,5 +1,5 @@
-import ListingProjet from '@/components/listingProjet';
-import Entete from '@/components/entete';
+import ListingProjet from '@/components/page projets/listingProjet';
+import Entete from '@/components/page projets/entete';
 
 interface projetProps {
     id: number;
@@ -27,8 +27,6 @@ interface userProps {
 export default function index({props}:{props:{projets: projetProps[], outil: any, outils: OutilsProps[], etat: any, users: userProps[], lastProjets: projetProps[], setPage: (page: string) => void, projetN: number, setProjetN: (projetN: number) => void}}) {
 
     const { projets, outil, outils, etat, users, lastProjets, setPage, projetN, setProjetN } = props;
-
-    console.log(projets);
 
     return (
         <section id="accueil" >

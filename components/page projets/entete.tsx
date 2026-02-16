@@ -1,6 +1,6 @@
 import { Card } from '@/components/ui/card';
-import { tools } from "./tools";
-import { Button } from './ui/button';
+import { tools } from "@/components/tools";
+import { Button } from '@/components/ui/button';
 
 export default function Entete({props}: {props:{projets: any[], outil: any[], outils: any[], etat: any[], users: any[], setPage: (page: string) => void}}) {
     

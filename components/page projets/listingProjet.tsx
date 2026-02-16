@@ -1,4 +1,4 @@
-import Projet from '../components/projet';
+import Projet from '@/components/page projets/projet';
 
 interface projetProps {
     id: number;

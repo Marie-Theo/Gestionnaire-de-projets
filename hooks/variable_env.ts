@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 
 interface projetProps {
     id: number;
@@ -56,11 +56,11 @@ export default function getProjet () {
                 .select('id, created_at, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
                 .eq("public", true)
                 .order('id_etat', { ascending: false });
-                console.log("fetching projets...");
+                // console.log("fetching projets...");
 
                 if (error) console.error(error);
                 else {
-                    console.log(data);
+                    // console.log(data);
                     setProjets(data || []);
                 };
         } else {
@@ -69,11 +69,11 @@ export default function getProjet () {
                 .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
                 .or("public.eq."+ true+",id_user.eq."+ id_user)
                 .order('id_etat', { ascending: false });
-                console.log("fetching projets...");
+                // console.log("fetching projets...");
 
                 if (error) console.error(error);
                 else {
-                    console.log(data);
+                    // console.log(data);
                     setProjets(data || []);
                 };
             }
@@ -94,11 +94,11 @@ export default function getProjet () {
                 .eq("public", true)
                 .order('seen_at', { ascending: false })
                 .limit(4);
-                console.log("fetching last seen projets...");
+                // console.log("fetching last seen projets...");
 
                 if (error) console.error(error);
                 else {
-                    console.log(data);
+                    // console.log(data);
                     setLastProjets(data || []);
                 };
         } else {
@@ -108,11 +108,11 @@ export default function getProjet () {
                 .or("public.eq."+ true+",id_user.eq."+ id_user)
                 .order('seen_at', { ascending: false })
                 .limit(4);
-                console.log("fetching last seen projets...");
+                // console.log("fetching last seen projets...");
 
                 if (error) console.error(error);
                 else {
-                    console.log(data);
+                    // console.log(data);
                     setLastProjets(data || []);
                 };
             }
@@ -128,11 +128,11 @@ export default function getProjet () {
         const { data, error } = await supabase
             .from('etat')
             .select('*');
-            console.log("fetching etat...");
+            // console.log("fetching etat...");
 
             if (error) console.error(error);
             else {
-                console.log(data);
+                // console.log(data);
                 setEtat(data || []);
             };
         }
@@ -147,11 +147,11 @@ export default function getProjet () {
         const { data, error } = await supabase
             .from('outil')
             .select('*');
-            console.log("fetching outil...");
+            // console.log("fetching outil...");
 
             if (error) console.error(error);
             else {
-                console.log(data);
+                // console.log(data);
                 setOutil(data || []);
             };
         }
@@ -166,11 +166,11 @@ export default function getProjet () {
         const { data, error } = await supabase
             .from('outils')
             .select('id, id_projet, outil:outil ( name )');
-            console.log("fetching outils...");
+            // console.log("fetching outils...");
 
             if (error) console.error(error);
             else {
-                console.log(data);
+                // console.log(data);
                 setOutils(data || []);
             };
         }
@@ -185,11 +185,11 @@ export default function getProjet () {
         const { data, error } = await supabase
             .from('users')
             .select(' id, name, theme, created_at ');
-            console.log("fetching users...");
+            // console.log("fetching users...");
 
             if (error) console.error(error);
             else {
-                console.log(data);
+                // console.log(data);
                 setUsers(data || []);
             };
         }

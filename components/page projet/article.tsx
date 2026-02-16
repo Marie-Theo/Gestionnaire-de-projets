@@ -1,5 +1,5 @@
-import updateLastSeen from "./updateLastSeen";
-import fetchLastSeenProjet from "./fetchLastSeenProjet";
+import updateLastSeen from "@/components/requet bdd/updateLastSeen";
+import fetchLastSeenProjet from "@/components/fetch/fetchLastSeenProjet";
 
 interface userProps {
     id: number;

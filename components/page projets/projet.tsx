@@ -1,8 +1,7 @@
 import { Card, CardHeader, CardAction, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge"
-import BadgesOutils from "./badgesOutils";
-import { tools } from "./tools";
-import { Button } from "./ui/button";
+import BadgesOutils from "./components/badgesOutils";
+import { tools } from "@/components/tools";
 
 interface projetProps {
     id: number;
@@ -27,8 +26,6 @@ export default function Projet({props}: {props:{projet: projetProps, outils: Out
 
     const { projet, outils, projetN, setProjetN, setPage } = props;
     const id_projet = projet.id;
-
-    console.log(projet);
 
     return (
     <Card className="max-w-100 pt-4 mb-4 relative pb-17 gap- hover:shadow-lg transition-shadow duration-300 lg:scale-100 hover:lg:scale-[100.2%] hover:cursor-pointer" onClick={() => {setPage("projet");setProjetN(projet.id)}}>
