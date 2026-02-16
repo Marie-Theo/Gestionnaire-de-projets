@@ -4,7 +4,7 @@ import getProjet from '../hooks/variable_env';
 import Menu from '../components/Menu';
 import Index from '../components/index';
 import Article from '../components/article';
-import FormConnexion from '../components/formConnexion';
+import FormConnexion from '../components/Connexion';
 
 export default function Home() {
 
@@ -22,7 +22,7 @@ export default function Home() {
 		{page === "projets" ? (
 			<Index props={{projets, outil, outils, etat, users, lastProjets, setPage, projetN, setProjetN}} />
 		) : page === "projet" ? (
-			<Article props={{projets, outil, outils, etat, users, lastProjets, setPage, projetN, setProjetN }} />
+			<Article props={{projets, outil, outils, etat, users, user, lastProjets, setPage, projetN, setProjetN, setProjets, setLastProjets }} />
 		// ) : page === "a-propos" ? (
 
 		) : page === "compte" ? (
