@@ -7,6 +7,7 @@ import sha256 from "@/components/sha256";
 import { supabase } from "@/lib/supabaseClient";
 import fetchProjet from "@/components/fetch/fetchProjet";
 import fetchLastSeenProjet from "@/components/fetch/fetchProjet";
+import fetchProjetUser from "@/components/fetch/fetchProjetUser";
 
 interface userProps {
     id: number;
@@ -16,31 +17,47 @@ interface userProps {
     created_at: string;
 }
 
-export default function FormConnexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: any[]) => void, setLastProjets: (lastProjets: any[]) => void}}) {
+interface projetProps {
+    id: number;
+    created_at: string;
+    seen_at: string;
+    title: string;
+    presentation: string;
+    repositories: string;
+    etat: {
+        name: string,
+        couleur: string
+    }[];
+    id_user: number;
+    public: boolean;
+}
 
-    const { user, setUser, setPage, setProjets, setLastProjets } = props;
+
+export default function FormConnexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: any[]) => void, setLastProjets: (lastProjets: any[]) => void, setProjetUser: (projetUser: any[]) => void}}) {
+
+    const { user, setUser, setPage, setProjets, setLastProjets, setProjetUser } = props;
     const [Erreur_Formulaire_inscription, setErreur_Formulaire_inscription] = useState<any>('false');
-    const login_name = useRef<any>(null);
+    const login_pseudo = useRef<any>(null);
     const login_MDP = useRef<any>(null);
 
-    async function fetchUser(Name: string) {
+    async function fetchUser(Pseudo: string) {
         const { data, error } = await supabase
         .from('users')
         .select(` id, name, mdp, theme, created_at `)
-        .eq('pseudo', Name)
+        .eq('pseudo', Pseudo)
         .limit(1);
         if (error) console.error(error);
         else return (data[0] !== undefined ? data[0] : { id: 0, name: '', theme: '', created_at: '', mdp: '' });
     }
     
     async function getLogin(e: React.FormEvent<HTMLFormElement>) {
-        let Name = login_name.current.value;
+        let Pseudo = login_pseudo.current.value;
         let MDP = await sha256(login_MDP.current.value);
         setErreur_Formulaire_inscription('false');
 
         e.preventDefault();
 
-        fetchUser(Name).then((data: any) => {
+        fetchUser(Pseudo).then((data: any) => {
             if (data.id == 0){
                 setErreur_Formulaire_inscription('Utilisateur non trouvé');
                 return;
@@ -52,7 +69,8 @@ export default function FormConnexion({props}: {props:{ user:userProps, setUser:
                 setUser(data);
                 fetchProjet(data.id, setProjets);
                 fetchLastSeenProjet(data.id, setLastProjets);
-                setPage('comptes');
+                fetchProjetUser(data.id, setProjetUser);
+                setPage('compte');
             }
             return false;
         });
@@ -61,8 +79,8 @@ export default function FormConnexion({props}: {props:{ user:userProps, setUser:
     return (
         <div className="md:mt-md md:max-w-md center mx-auto mt-25 flex flex-col">
             <h1 className="text-3xl center">Connexion :</h1>
-            <Label className='mt-3' htmlFor="nom">Nom</Label>
-            <Input type="text" placeholder="Nom" id="nom" ref={login_name}/>
+            <Label className='mt-3' htmlFor="pseudo">Nom</Label>
+            <Input type="text" placeholder="Pseudo" id="pseudo" ref={login_pseudo}/>
             { Erreur_Formulaire_inscription === 'Utilisateur non trouvé' ? (<Alert className="mt-1 bg-red-50 border-red-300 text-red-800"><AlertDescription>{Erreur_Formulaire_inscription}</AlertDescription></Alert>) : null}
             <Label className='mt-3' htmlFor="password">Mot de passe</Label>
             <Input type="password" placeholder="password" id="password" ref={login_MDP}/>

@@ -34,10 +34,10 @@ interface userProps {
     created_at: string;
 }
 
-
 export default function getProjet () {
     const [projets, setProjets] = useState<projetProps[]>([]);
-    const [lastProjets, setLastProjets] = useState<any[]>([]);
+    const [lastProjets, setLastProjets] = useState<projetProps[]>([]);
+    const [projetUser, setProjetUser] = useState<projetProps[]>([]);
     const [etat, setEtat] = useState<any[]>([]);
     const [outil, setOutil] = useState<any[]>([]);
     const [outils, setOutils] = useState<OutilsProps[]>([]);
@@ -202,6 +202,7 @@ export default function getProjet () {
     return {
         projets, setProjets,
         lastProjets, setLastProjets,
+        projetUser, setProjetUser,
         etat,
         outil,
         outils,

@@ -2,9 +2,16 @@ import Projet from '@/components/page projets/projet';
 
 interface projetProps {
     id: number;
+    created_at: string;
+    seen_at: string;
     title: string;
     presentation: string;
-    etat: any;
+    repositories: string;
+    etat: {
+        name: string,
+        couleur: string
+    };
+    id_user: number;
     public: boolean;
 }
 
