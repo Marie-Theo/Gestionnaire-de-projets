@@ -5,9 +5,16 @@ import { supabase } from '../lib/supabaseClient';
 
 interface projetProps {
     id: number;
+    created_at: string;
+    seen_at: string;
     title: string;
     presentation: string;
-    etat: any;
+    repositories: string;
+    etat: {
+        name: string,
+        couleur: string
+    }[];
+    id_user: number;
     public: boolean;
 }
 
@@ -21,9 +28,10 @@ interface OutilsProps {
 
 interface userProps {
     id: number;
-    created_at: string;
+    mdp: string;
     name: string;
     theme: string;
+    created_at: string;
 }
 
 
@@ -34,14 +42,15 @@ export default function getProjet () {
     const [outil, setOutil] = useState<any[]>([]);
     const [outils, setOutils] = useState<OutilsProps[]>([]);
     const [users, setUsers] = useState<any[]>([]);
-    const [user, setUser] = useState<userProps>({ id: 0, created_at: '', name: '', theme: '' });
+    const [user, setUser] = useState<userProps>({ id: 0, name: '', mdp: '', theme: '', created_at: '' });
     const id_user:any = user.id;
     const [page, setPage] = useState<string>("projets");
+    const [projetN, setProjetN] = useState<number>(0);
 
     useEffect(() => {
         async function fetchProjets() {
         // Récupérer les projets publics si l'utilisateur n'est pas connecté, sinon récupérer les projets de l'utilisateur connecté
-        if (user.id === 0) {
+        if (user.id == 0) {
             const { data, error } = await supabase
                 .from('projets')
                 .select('id, created_at, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
@@ -58,8 +67,7 @@ export default function getProjet () {
             const { data, error } = await supabase
                 .from('projets')
                 .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
-                .eq("public", true)
-                .or("id_user", id_user)
+                .or("public.eq."+ true+",id_user.eq."+ id_user)
                 .order('id_etat', { ascending: false });
                 console.log("fetching projets...");
 
@@ -97,8 +105,7 @@ export default function getProjet () {
             const { data, error } = await supabase
                 .from('projets')
                 .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
-                .eq("public", true)
-                .or("id_user", id_user)
+                .or("public.eq."+ true+",id_user.eq."+ id_user)
                 .order('seen_at', { ascending: false })
                 .limit(4);
                 console.log("fetching last seen projets...");
@@ -193,13 +200,14 @@ export default function getProjet () {
     }, []);
 
     return {
-        projets,
-        lastProjets,
+        projets, setProjets,
+        lastProjets, setLastProjets,
         etat,
         outil,
         outils,
         users,
-        user,
-        page, setPage
+        user, setUser,
+        page, setPage,
+        projetN, setProjetN
     }
 }

@@ -15,7 +15,7 @@ export default function Menu({props}: {props:{user: userProps, page: string, set
     const {user, page, setPage} = props;
 
     return (
-    <Card className="fixed bottom-[2%] left-[15%]  w-[70%] max-h-[10%] bg-white border-t border-gray-200 pt-[1%] pb-[1%]">
+    <Card className="fixed bottom-4 left-[15%]  w-[70%] max-h-[10%] bg-white border-t border-gray-200 pt-[1%] pb-[1%]">
         <div className="container mx-auto flex justify-around">
             { user.name !=='' ?
                 <Button variant={tools.isPage(page, "Nouveaux")} onClick={() => setPage("Nouveaux")} className="text-xl">Nouveaux</Button>

@@ -24,14 +24,17 @@ interface userProps {
     theme: string;
 }
 
-export default function index({props}:{props:{projets: projetProps[], outil: any, outils: OutilsProps[], etat: any, users: userProps[], lastProjets: projetProps[], setPage: (page: string) => void}}) {
+export default function index({props}:{props:{projets: projetProps[], outil: any, outils: OutilsProps[], etat: any, users: userProps[], lastProjets: projetProps[], setPage: (page: string) => void, projetN: number, setProjetN: (projetN: number) => void}}) {
 
-    const { projets, outil, outils, etat, users, lastProjets, setPage } = props;
+    const { projets, outil, outils, etat, users, lastProjets, setPage, projetN, setProjetN } = props;
+
+    console.log(projets);
+
     return (
         <section id="accueil" >
             <Entete props={{projets, outil, outils, etat, users, setPage}} />
-            <ListingProjet props={{projets:lastProjets, outils, title:"Projets récemment vus"}} />
-            <ListingProjet props={{projets, outils, title:"Tous les projets"}} />
+            <ListingProjet props={{projets:lastProjets, outils, title:"Projets récemment vus", projetN, setProjetN, setPage}} />
+            <ListingProjet props={{projets, outils, title:"Tous les projets", projetN, setProjetN, setPage}} />
         </section>
 );
 }
