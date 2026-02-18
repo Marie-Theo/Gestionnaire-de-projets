@@ -19,9 +19,10 @@ interface projetProps {
 
 interface userProps {
     id: number;
-    mdp: string;
     name: string;
+    mdp: string;
     theme: string;
+    presentation:string;
     created_at: string;
 }
 

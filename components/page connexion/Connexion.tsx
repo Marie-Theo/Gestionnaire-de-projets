@@ -15,6 +15,7 @@ interface userProps {
     name: string;
     mdp: string;
     theme: string;
+    presentation:string;
     created_at: string;
 }
 
@@ -52,7 +53,7 @@ export default function FormConnexion({props}: {props:{ user:userProps, setUser:
     async function fetchUser(Pseudo: string) {
         const { data, error } = await supabase
         .from('users')
-        .select(` id, name, mdp, theme, created_at `)
+        .select(` id, name, mdp, theme, presentation, created_at `)
         .eq('pseudo', Pseudo)
         .limit(1);
         if (error) console.error(error);
