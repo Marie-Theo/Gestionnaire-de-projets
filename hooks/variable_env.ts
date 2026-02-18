@@ -34,6 +34,16 @@ interface userProps {
     created_at: string;
 }
 
+interface lienProps {
+    id:number;
+    site: {
+        id:number;
+        site:string;
+    } | null;
+    url:string;
+}
+
+
 export default function getProjet () {
     const [projets, setProjets] = useState<projetProps[]>([]);
     const [lastProjets, setLastProjets] = useState<projetProps[]>([]);
@@ -46,6 +56,7 @@ export default function getProjet () {
     const id_user:number = user.id;
     const [page, setPage] = useState<string>("projets");
     const [projetN, setProjetN] = useState<number>(0);
+    const [lien, setLien] = useState<lienProps[]>([]);
 
     useEffect(() => {
         async function fetchProjets() {
@@ -209,6 +220,7 @@ export default function getProjet () {
         users,
         user, setUser,
         page, setPage,
-        projetN, setProjetN
+        projetN, setProjetN,
+        lien, setLien
     }
 }

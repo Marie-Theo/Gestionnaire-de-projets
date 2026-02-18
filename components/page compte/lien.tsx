@@ -1,22 +1,31 @@
-import {Card} from "@/components/ui/card"
-
-interface lienUserProps {
-    id:number,
-    lien:{
-        id:number,
-        site:string
-    },
-    url:string
+interface lienProps {
+    id:number;
+    site: {
+        id:number;
+        site:string;
+    } | null;
+    url:string;
 }
 
-export default function lien(lien:lienUserProps[]) {
+export default function lien({props}:{props:{lien:lienProps[]}}) {
 
+  const { lien } = props;
+	
     return (
-        <div className="p-4 rounded-lg pl-10 pr-10 max-h-[min-content] p-2 shadow col-span-1 flex ">
-            { lien.length > 0? (
-                lien.map((src) => (
-                <a href={src.url}>{src.lien.site}</a>
-            ))): "aucun lien enregistrer"}
-        </div>
+    <div>
+      <h1>Liens</h1>
+      {lien.length > 0 ? (
+        lien.map((src) => (
+          <div key={src.id} className="pl-5 pr-5">
+            {src.site?.site} : &nbsp;
+            <a href={src.url} target="_blank" className="text-blue-500 hover:text-blue-600 hover:underline underline-offset-0">
+              {src.url}
+            </a>
+          </div>
+        ))
+      ) : (
+        "aucun lien enregistré"
+      )}
+    </div>
     );
 }

@@ -8,6 +8,7 @@ import { supabase } from "@/lib/supabaseClient";
 import fetchProjet from "@/components/fetch/fetchProjet";
 import fetchLastSeenProjet from "@/components/fetch/fetchProjet";
 import fetchProjetUser from "@/components/fetch/fetchProjetUser";
+import fetchLien from "@/components/fetch/fetchLien";
 
 interface userProps {
     id: number;
@@ -32,10 +33,18 @@ interface projetProps {
     public: boolean;
 }
 
+interface lienProps {
+    id:number;
+    site: {
+        id:number;
+        site:string;
+    } | null;
+    url:string;
+}
 
-export default function FormConnexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: any[]) => void, setLastProjets: (lastProjets: any[]) => void, setProjetUser: (projetUser: any[]) => void}}) {
+export default function FormConnexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: projetProps[]) => void, setLastProjets: (lastProjets: projetProps[]) => void, setProjetUser: (projetUser: lienProps[]) => void, setLien: (lien: lienProps[]) => void}}) {
 
-    const { user, setUser, setPage, setProjets, setLastProjets, setProjetUser } = props;
+    const { user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien } = props;
     const [Erreur_Formulaire_inscription, setErreur_Formulaire_inscription] = useState<any>('false');
     const login_pseudo = useRef<any>(null);
     const login_MDP = useRef<any>(null);
@@ -70,6 +79,7 @@ export default function FormConnexion({props}: {props:{ user:userProps, setUser:
                 fetchProjet(data.id, setProjets);
                 fetchLastSeenProjet(data.id, setLastProjets);
                 fetchProjetUser(data.id, setProjetUser);
+                fetchLien(data.id,setLien);
                 setPage('compte');
             }
             return false;

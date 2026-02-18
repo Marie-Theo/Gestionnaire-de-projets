@@ -9,7 +9,7 @@ import Compte from '@/components/page compte/Compte';
 
 export default function Home() {
 
-	const { projets, setProjets, lastProjets, setLastProjets, etat, outil, outils, users, user, setUser, page, setPage, projetN, setProjetN, projetUser, setProjetUser } = getProjet();
+	const { projets, setProjets, lastProjets, setLastProjets, etat, outil, outils, users, user, setUser, page, setPage, projetN, setProjetN, projetUser, setProjetUser, lien, setLien } = getProjet();
 
 	// if (projets.length === 0 || etat.length === 0 || outil.length === 0 || outils.length === 0 || users.length === 0) {
 	// 	return <div>
@@ -27,9 +27,9 @@ export default function Home() {
 		// ) : page === "a-propos" ? (
 
 		) : page === "compte" ? (
-			<Compte props={{ projetUser, setProjetUser, outils, user, projetN, setProjetN, setPage}}></Compte>
+			<Compte props={{ projetUser, setProjetUser, outils, user, projetN, setProjetN, setPage, lien}} />
 		) : page === "Connexion" ? (
-			<FormConnexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser }} />
+			<FormConnexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien }} />
 		// ) : page === "Nouveaux" ? (
 
 		) : null}
