@@ -12,11 +12,11 @@ export default async function fetchProjet(id_user: number, setLastProjets: (last
             .eq("public", true)
             .order('seen_at', { ascending: false })
             .limit(4);
-        // console.log("fetching last seen projets...");
+        console.log("fetching last seen projets...");
 
         if (error) console.error(error);
         else {
-            // console.log(data);
+            console.log(data);
             setLastProjets(data || []);
         };
     } else {
@@ -26,11 +26,11 @@ export default async function fetchProjet(id_user: number, setLastProjets: (last
             .or("public.eq."+ true+",id_user.eq."+ id_user)
             .order('seen_at', { ascending: false })
             .limit(4);
-        // console.log("fetching last seen projets...");
+        console.log("fetching last seen projets...");
 
         if (error) console.error(error);
         else {
-            // console.log(data);
+            console.log(data);
             setLastProjets(data || []);
         };
     }

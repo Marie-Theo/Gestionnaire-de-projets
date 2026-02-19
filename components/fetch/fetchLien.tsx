@@ -8,11 +8,11 @@ export default async function fetchLien(id:number,setLien: (lien: any[]) => void
         .from('liens_user')
         .select('id, site ( id, site ), url ')
         .eq("id_user", id);
-    // console.log("fetching lien...");
+    console.log("fetching lien...");
 
     if (error) console.error(error);
     else {
-        // console.log(data);
+        console.log(data);
         setLien(data || []);
     };
 }

@@ -14,6 +14,6 @@ const colors = {
 export const tools = {
     pluralize: (count: number) => count === 1 ? '' : 's',
     defineBadgecolor: (couleur: string) => colors[couleur as keyof typeof colors] || 'bg-gray-100 border-gray-400 text-gray-900',
-    definePublicBadgeColor: (isPublic: boolean) => isPublic ? 'bg-green-100 border-green-400 text-green-900 ml-2' : 'bg-red-100 border-red-400 text-red-900 ml-2',
+    definePublicBadgeColor: (isPublic: boolean) => isPublic ? 'bg-green-100 border-green-400 text-green-900 ml-1' : 'bg-red-100 border-red-400 text-red-900 ml-1',
     isPage: (page: string, pageName: string) => page === pageName ? 'secondary' : 'ghost',
 };

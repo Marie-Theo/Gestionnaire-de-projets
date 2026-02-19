@@ -1,5 +1,4 @@
-import updateLastSeen from "@/components/requet bdd/updateLastSeen";
-import fetchLastSeenProjet from "@/components/fetch/fetchLastSeenProjet";
+import Entete from "@/components/page projet/entete";
 
 interface userProps {
     id: number;
@@ -10,18 +9,28 @@ interface userProps {
     created_at: string;
 }
 
-export default function Article({props}: {props: { projets: any[], outil: any[], outils: any[], etat: any[], users: userProps[], user: userProps, lastProjets: any[], setPage: (page: string) => void, projetN: number, setProjetN: (projetN: number) => void, setProjets: (projets: any[]) => void, setLastProjets: (lastProjets: any[]) => void}}) {
+interface projetProps {
+    id: number;
+    created_at: string;
+    seen_at: string;
+    title: string;
+    presentation: string;
+    repositories: string;
+    etat: {
+        name: string,
+        couleur: string
+    }[];
+    id_user: number;
+    public: boolean;
+}
 
-    const { projets, outil, outils, etat, users, user, lastProjets, setPage, projetN, setProjetN, setProjets, setLastProjets } = props;
+export default function Article({props}: {props: { outil: any[], outils: any[], etat: any[], users: userProps[], user: userProps, setPage: (page: string) => void, article:projetProps[], setArticle: (article: projetProps[]) => void}}) {
 
-    if (projetN === 0) {
-        setPage("projets");
-    }
-
-    updateLastSeen(projetN);
-    fetchLastSeenProjet(user.id, setLastProjets);
+    const { outil, outils, etat, users, user, setPage, article, setArticle } = props;
 
     return (
-        <div></div>
+        <div>
+            <Entete props={{article}}/>
+        </div>
     );
 }

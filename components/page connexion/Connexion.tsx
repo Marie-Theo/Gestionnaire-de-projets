@@ -90,11 +90,11 @@ export default function FormConnexion({props}: {props:{ user:userProps, setUser:
     return (
         <div className="md:mt-md md:max-w-md center mx-auto mt-25 flex flex-col">
             <h1 className="text-3xl center">Connexion :</h1>
-            <Label className='mt-3' htmlFor="pseudo">Nom</Label>
+            <Label className='mt-3' htmlFor="pseudo">Pseudo</Label>
             <Input type="text" placeholder="Pseudo" id="pseudo" ref={login_pseudo}/>
             { Erreur_Formulaire_inscription === 'Utilisateur non trouvé' ? (<Alert className="mt-1 bg-red-50 border-red-300 text-red-800"><AlertDescription>{Erreur_Formulaire_inscription}</AlertDescription></Alert>) : null}
             <Label className='mt-3' htmlFor="password">Mot de passe</Label>
-            <Input type="password" placeholder="password" id="password" ref={login_MDP}/>
+            <Input type="password" placeholder="••••••••" id="password" ref={login_MDP}/>
             { Erreur_Formulaire_inscription === 'Mot de passe incorrect' ? (<Alert className="mt-1 bg-red-50 border-red-300 text-red-800"><AlertDescription>{Erreur_Formulaire_inscription}</AlertDescription></Alert>) : null}
             { Erreur_Formulaire_inscription === 'Erreur lors de l\'inscription:' ? (<Alert className="mt-1 bg-red-50 border-red-300 text-red-800"><AlertDescription>{Erreur_Formulaire_inscription}</AlertDescription></Alert>) : null}
             <Button className='mx-auto w-[100%] mt-3' type="submit" onClick={getLogin}>Connexion</Button>

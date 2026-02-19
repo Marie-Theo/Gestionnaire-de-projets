@@ -23,8 +23,8 @@ interface OutilsProps {
     }[];
 }
 
-export default function ListingProjet({props}: {props:{projets: projetProps[], outils: OutilsProps[],title: string, projetN: number, setProjetN: (projetN: number) => void, setPage: (page: string) => void}}) {
-    const { projets, outils, title, projetN, setProjetN, setPage } = props;
+export default function ListingProjet({props}: {props:{projets: projetProps[], outils: OutilsProps[],title: string, setPage: (page: string) => void, setLastProjets: (lastProjets: any[]) => void, setArticle: (article: projetProps[]) => void,user:any}}) {
+    const { projets, outils, title, setPage, user, setLastProjets, setArticle } = props;
 
     return projets.length > 0 ? (
         <section>
@@ -33,7 +33,7 @@ export default function ListingProjet({props}: {props:{projets: projetProps[], o
                 ): null}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {projets.map((projet) => (
-                    <Projet key={projet.id} props={{projet,outils, projetN, setProjetN,setPage}} />
+                    <Projet key={projet.id} props={{projet,outils,setPage, user, setLastProjets, setArticle}} />
                 ))}
             </div>
         </section>

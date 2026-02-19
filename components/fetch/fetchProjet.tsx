@@ -11,11 +11,11 @@ export default async function fetchProjet(id_user: number, setProjets: (projets:
             .select('id, created_at, seen_at, title, presentation, repositories, etat:etat ( name, couleur ), id_user, public')
             .eq("public", true)
             .order('id_etat', { ascending: false });
-        // console.log("fetching projets...");
+        console.log("fetching projets...");
 
         if (error) console.error(error);
         else {
-            // console.log(data);
+            console.log(data);
             setProjets(data || []);
         };
     } else {
@@ -24,11 +24,11 @@ export default async function fetchProjet(id_user: number, setProjets: (projets:
             .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
             .or("public.eq."+ true+",id_user.eq."+ id_user)
             .order('id_etat', { ascending: false });
-        // console.log("fetching projets...");
+        console.log("fetching projets...");
 
         if (error) console.error(error);
         else {
-            // console.log(data);
+            console.log(data);
             setProjets(data || []);
         };
     }

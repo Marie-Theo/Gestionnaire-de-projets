@@ -2,6 +2,9 @@ import { Card, CardHeader, CardAction, CardTitle, CardDescription, CardFooter } 
 import { Badge } from "@/components/ui/badge"
 import BadgesOutils from "./components/badgesOutils";
 import { tools } from "@/components/tools";
+import updateLastSeen from "@/components/requet bdd/updateLastSeen";
+import fetchLastSeenProjet from "@/components/fetch/fetchLastSeenProjet";
+import fetchArticle from "../fetch/fetchArticle";
 
 interface projetProps {
     id: number;
@@ -26,13 +29,21 @@ interface OutilsProps {
     }[];
 }
 
-export default function Projet({props}: {props:{projet: projetProps, outils: OutilsProps[], projetN: number, setProjetN: (projetN: number) => void, setPage: (page: string) => void}}) {
+export default function Projet({props}: {props:{projet: projetProps, outils: OutilsProps[], setPage: (page: string) => void, setLastProjets: (lastProjets: any[]) => void, setArticle: (article: projetProps[]) => void,user:any}}) {
 
-    const { projet, outils, projetN, setProjetN, setPage } = props;
+    const { projet, outils, setPage, user, setLastProjets, setArticle } = props;
     const id_projet = projet.id;
 
+
+    function clickPorjet(){
+        setPage("projet");
+        updateLastSeen(projet.id);
+        fetchLastSeenProjet(user.id, setLastProjets);
+        fetchArticle(projet.id, setArticle);
+    }
+
     return (
-    <Card className="max-w-100 pt-4 mb-4 relative pb-17 gap- hover:shadow-lg transition-shadow duration-300 lg:scale-100 hover:lg:scale-[100.5%] hover:cursor-pointer" onClick={() => {setPage("projet");setProjetN(projet.id)}}>
+    <Card className="pt-4 mb-4 relative pb-17 gap- hover:shadow-lg transition-shadow duration-300 lg:scale-100 hover:lg:scale-[100.5%] hover:cursor-pointer" onClick={() => {clickPorjet()}}>
             <CardHeader>
                 <CardAction>
                     <Badge variant="outline" className={tools.defineBadgecolor(projet.etat.couleur)}>{projet.etat.name}</Badge> 

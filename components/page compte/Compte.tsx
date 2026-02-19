@@ -35,14 +35,14 @@ interface lienProps {
     url:string;
 }
 
-export default function Compte ({props} : {props:{projetUser:projetProps[], setProjetUser: (projetUser: projetProps[]) => void, outils:any[],user:userProps, projetN:any, setProjetN: (projetN: number) => void, setPage: (page: string) => void, lien:lienProps[]}}) {
+export default function Compte ({props} : {props:{projetUser:projetProps[], setProjetUser: (projetUser: projetProps[]) => void, outils:any[],user:userProps, setPage: (page: string) => void, lien:lienProps[], setArticle: (article: any[]) => void}}) {
 
-    const { projetUser, setProjetUser, outils, user, projetN, setProjetN, setPage, lien } = props;
+    const { projetUser, setProjetUser, outils, user, setPage, lien, setArticle } = props;
 
     return(
         <section id="compte">
             <Entete props={{lien,user}}/>
-            <ListingProjet props={{projets:projetUser, outils, title:`Projet${tools.pluralize(projetUser.length)} :`, projetN, setProjetN, setPage}} />
+            <ListingProjet props={{projets:projetUser, outils, title:`Projet${tools.pluralize(projetUser.length)} :`, setPage, setArticle}} />
         </section>
     );
 }
