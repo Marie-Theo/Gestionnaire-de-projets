@@ -2,7 +2,7 @@
 
 import { supabase } from "@/lib/supabaseClient";
 
-export default async function fetchProjet(id_user: number, setLastProjets: (lastProjets: any[]) => void) {
+export default async function fetchLastSeenProjet(id_user: number, setLastProjets: (lastProjets: any[]) => void) {
     
     // Récupérer les projets publics si l'utilisateur n'est pas connecté vu récemment, sinon récupérer les projets de l'utilisateur connecté qui ont été vus récemment
     if (id_user === 0) {

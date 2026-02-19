@@ -1,4 +1,5 @@
 import Entete from "@/components/page projet/entete";
+import Contante from "@/components/page projet/contenu";
 
 interface userProps {
     id: number;
@@ -31,6 +32,7 @@ export default function Article({props}: {props: { outil: any[], outils: any[], 
     return (
         <div>
             <Entete props={{article, outils, documentation}}/>
+            <Contante props={{documentation}} />
         </div>
     );
 }

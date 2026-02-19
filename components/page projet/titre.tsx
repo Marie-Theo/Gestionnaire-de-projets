@@ -27,7 +27,7 @@ export default function Titre({props}:{props:{article:projetProps[],outils:any}}
                 <div>
                     <title>{article[0].title}</title>
                     <div className="flex">
-                        <div className="text-2xl flex-1">{article[0].title}</div>
+                        <div className="text-3xl flex-1">{article[0].title}</div>
                         <div className="flex-none content-center flex flex-wrap gap-1">
                             <BadgesOutils props={{id_projet:article[0].id,outils}} />
                             <Badge variant="outline" className={tools.defineBadgecolor(article[0].etat.couleur)}>{article[0].etat.name}</Badge> 
