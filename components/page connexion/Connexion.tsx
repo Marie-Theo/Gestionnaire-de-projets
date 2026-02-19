@@ -5,10 +5,10 @@ import { Label } from "@/components/ui/label";
 import { useRef, useState } from "react";
 import sha256 from "@/components/sha256";
 import { supabase } from "@/lib/supabaseClient";
-import fetchProjet from "@/components/fetch/fetchProjet";
-import fetchLastSeenProjet from "@/components/fetch/fetchProjet";
-import fetchProjetUser from "@/components/fetch/fetchProjetUser";
-import fetchLien from "@/components/fetch/fetchLien";
+import fetchProjet from "@/hooks/fetch/fetchProjet";
+import fetchLastSeenProjet from "@/hooks/fetch/fetchProjet";
+import fetchProjetUser from "@/hooks/fetch/fetchProjetUser";
+import fetchLien from "@/hooks/fetch/fetchLien";
 
 interface userProps {
     id: number;

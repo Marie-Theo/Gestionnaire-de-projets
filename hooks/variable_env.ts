@@ -44,6 +44,17 @@ interface lienProps {
     url:string;
 }
 
+interface documentationProps {
+    id:number;
+    id_categorie:{
+        id:number;
+        text:string;
+        ordre:number;
+        style:number;
+    }[];
+    text:string;
+}
+
 
 export default function getProjet () {
     const [projets, setProjets] = useState<projetProps[]>([]);
@@ -57,7 +68,8 @@ export default function getProjet () {
     const id_user:number = user.id;
     const [page, setPage] = useState<string>("projets");
     const [lien, setLien] = useState<lienProps[]>([]);
-    const [article, setArticle] = useState<projetProps[]>([]);
+    const [article, setArticle] = useState<projetProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:true });
+    const [documentation, setDocumentation] = useState<documentationProps[]>([]);
 
     useEffect(() => {
         async function fetchProjets() {
@@ -222,6 +234,7 @@ export default function getProjet () {
         user, setUser,
         page, setPage,
         lien, setLien,
-        article, setArticle
+        article, setArticle,
+        documentation, setDocumentation
     }
 }

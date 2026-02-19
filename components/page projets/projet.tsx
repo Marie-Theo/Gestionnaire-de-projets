@@ -1,10 +1,11 @@
 import { Card, CardHeader, CardAction, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 import BadgesOutils from "./components/badgesOutils";
 import { tools } from "@/components/tools";
 import updateLastSeen from "@/components/requet bdd/updateLastSeen";
-import fetchLastSeenProjet from "@/components/fetch/fetchLastSeenProjet";
-import fetchArticle from "../fetch/fetchArticle";
+import fetchLastSeenProjet from "@/hooks/fetch/fetchLastSeenProjet";
+import fetchArticle from "@/hooks/fetch/fetchArticle";
+import fetchDocumentation from "@/hooks/fetch/fetchDocumentation";
 
 interface projetProps {
     id: number;
@@ -29,9 +30,18 @@ interface OutilsProps {
     }[];
 }
 
-export default function Projet({props}: {props:{projet: projetProps, outils: OutilsProps[], setPage: (page: string) => void, setLastProjets: (lastProjets: any[]) => void, setArticle: (article: projetProps[]) => void,user:any}}) {
+interface userProps {
+    id: number;
+    name: string;
+    mdp: string;
+    theme: string;
+    presentation:string;
+    created_at: string;
+}
 
-    const { projet, outils, setPage, user, setLastProjets, setArticle } = props;
+export default function Projet({props}: {props:{projet: projetProps, outils: OutilsProps[], setPage: (page: string) => void, setLastProjets: (lastProjets: any[]) => void, setArticle: (article: projetProps) => void,user:userProps, setDocumentation: (documentation: any[]) => void}}) {
+
+    const { projet, outils, setPage, user, setLastProjets, setArticle, setDocumentation } = props;
     const id_projet = projet.id;
 
 
@@ -40,6 +50,7 @@ export default function Projet({props}: {props:{projet: projetProps, outils: Out
         updateLastSeen(projet.id);
         fetchLastSeenProjet(user.id, setLastProjets);
         fetchArticle(projet.id, setArticle);
+        fetchDocumentation(projet.id, setDocumentation);
     }
 
     return (

@@ -31,15 +31,15 @@ interface userProps {
     theme: string;
 }
 
-export default function index({props}:{props:{projets: projetProps[], outil: any, outils: OutilsProps[], etat: any, users: userProps[], lastProjets: projetProps[], setPage: (page: string) => void, setLastProjets: (lastProjets: any[]) => void, setArticle: (article: projetProps[]) => void,user:any}}) {
+export default function index({props}:{props:{projets: projetProps[], outil: any, outils: OutilsProps[], etat: any, users: userProps[], lastProjets: projetProps[], setPage: (page: string) => void, setLastProjets: (lastProjets: any[]) => void, setArticle: (article: projetProps) => void,user:any, setDocumentation: (documentation: any[]) => void}}) {
 
-    const { projets, outil, outils, etat, users, lastProjets, setPage, user, setLastProjets, setArticle } = props;
+    const { projets, outil, outils, etat, users, lastProjets, setPage, user, setLastProjets, setArticle, setDocumentation } = props;
 
     return (
         <section id="accueil" >
             <Entete props={{projets, outil, outils, etat, users, setPage}} />
-            <ListingProjet props={{projets:lastProjets, outils, title:"Projets récemment vus", setPage, user, setLastProjets, setArticle}} />
-            <ListingProjet props={{projets, outils, title:"Tous les projets", setPage, user, setLastProjets, setArticle}} />
+            <ListingProjet props={{projets:lastProjets, outils, title:"Projets récemment vus", setPage, user, setLastProjets, setArticle, setDocumentation}} />
+            <ListingProjet props={{projets, outils, title:"Tous les projets", setPage, user, setLastProjets, setArticle, setDocumentation}} />
         </section>
-);
+    );
 }

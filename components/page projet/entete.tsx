@@ -1,3 +1,6 @@
+import Titre from "@/components/page projet/titre";
+import Sommaire from "@/components/page projet/sommaire";
+
 interface projetProps {
     id: number;
     created_at: string;
@@ -13,14 +16,14 @@ interface projetProps {
     public: boolean;
 }
 
-export default function EnteteArticle({props}:{props:{article:projetProps[]}}){
+export default function EnteteArticle({props}:{props:{article:projetProps,outils:any,documentation:any[]}}){
 
-    const { article } = props;
+    const { article, outils, documentation } = props;
 
-    console.log('>> '+article);
     return (
-        <div>
-            <div>{article[0].title}</div>
+        <div className="grid grid-cols-3 gap-5 xl:gap-1">
+            <Titre props={{article,outils}}/>
+            <Sommaire props={{documentation}}/>
         </div>
     );
 }

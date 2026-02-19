@@ -24,13 +24,13 @@ interface projetProps {
     public: boolean;
 }
 
-export default function Article({props}: {props: { outil: any[], outils: any[], etat: any[], users: userProps[], user: userProps, setPage: (page: string) => void, article:projetProps[], setArticle: (article: projetProps[]) => void}}) {
+export default function Article({props}: {props: { outil: any[], outils: any[], etat: any[], users: userProps[], user: userProps, setPage: (page: string) => void, article:projetProps, setArticle: (article: projetProps) => void, documentation:any[]}}) {
 
-    const { outil, outils, etat, users, user, setPage, article, setArticle } = props;
+    const { outil, outils, etat, users, user, setPage, article, setArticle, documentation } = props;
 
     return (
         <div>
-            <Entete props={{article}}/>
+            <Entete props={{article, outils, documentation}}/>
         </div>
     );
 }
