@@ -55,6 +55,13 @@ interface documentationProps {
     text:string;
 }
 
+interface categorieProps {
+    id:number;
+    text:string;
+    ordre:number;
+    style:number;
+};
+
 
 export default function getProjet () {
     const [projets, setProjets] = useState<projetProps[]>([]);
@@ -70,6 +77,10 @@ export default function getProjet () {
     const [lien, setLien] = useState<lienProps[]>([]);
     const [article, setArticle] = useState<projetProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:true });
     const [documentation, setDocumentation] = useState<documentationProps[]>([]);
+    const [categorie,setCategorie] = useState<categorieProps[]>([]);
+    const [nouveauArticle, setNouveauArticle] = useState<projetProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:false });
+    const [nouvelDocumentation, setNouvelDocumentation] = useState<documentationProps[]>([{id:0,id_categorie:[{id:0,text:'',ordre:0,style:0}],text:''}]);
+    const [nouveauOutils, setNouveauOutils] = useState<any[]>([]);
 
     useEffect(() => {
         async function fetchProjets() {
@@ -235,6 +246,10 @@ export default function getProjet () {
         page, setPage,
         lien, setLien,
         article, setArticle,
-        documentation, setDocumentation
+        documentation, setDocumentation,
+        categorie,setCategorie,
+        nouveauArticle, setNouveauArticle,
+        nouvelDocumentation, setNouvelDocumentation,
+        nouveauOutils, setNouveauOutils
     }
 }

@@ -21,8 +21,9 @@ export default async function fetchDocumentation(id_article: number, setDocument
         .from('documentations')
         .select('id, id_categorie ( id, text, ordre, style ), text')
         .eq("id_projet", id_article)
-        .order('ordre', { referencedTable: 'id_categorie', ascending: false })
-        .order('id_categorie', { ascending: true });
+        .order('id_categorie', { ascending: true })
+        .order('id', { ascending: true })
+        .order('ordre', { referencedTable: 'id_categorie', ascending: false });
     console.log("fetching Documentation...");
 
     if (error) console.error(error);

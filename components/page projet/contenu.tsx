@@ -19,7 +19,7 @@ export default function contante({props}:{props:{documentation:documentationProp
     function writeTitle(text:string){
         obj.temps = text;
         return (
-            <h2 id={text} className="text-2xl">
+            <h2 id={text} className="text-2xl mt-10">
                 {text} :
             </h2>
         );
