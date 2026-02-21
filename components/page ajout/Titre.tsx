@@ -1,10 +1,12 @@
 "use client"
 
+import { useEffect, useState } from 'react';
 import { Badge } from "@/components/ui/badge";
 import {  Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList, ComboboxChips, ComboboxValue, ComboboxChipsInput, ComboboxChip } from "@/components/ui/combobox";
 import { tools } from "@/components/tools";
 import BadgesOutils from "@/components/page projets/components/badgesOutils";
 import { Input } from "@base-ui/react";
+import Select from '@/components/page ajout/components/select'
 
 interface projetProps {
     id: number;
@@ -45,6 +47,7 @@ export default function Titre({props}:{props:{nouveauArticle:projetProps, setNou
         tableau.push(element.name);
     });
 
+    console.log(nouveauArticle);
     return(
         <div className="col-span-3 xl:col-span-2 pr-5">
             { nouveauArticle.title != '' ?(<title>{nouveauArticle.title}</title>):null}
@@ -52,8 +55,8 @@ export default function Titre({props}:{props:{nouveauArticle:projetProps, setNou
                 <div className="text-3xl flex-1">{nouveauArticle.title}</div>
                 <div className="flex-none content-center flex flex-wrap gap-1">
                     <BadgesOutils props={{id_projet:nouveauArticle.id,outils:nouveauOutils}} />
-                    <Badge variant="outline" className={tools.defineBadgecolor(nouveauArticle.etat[0].couleur)}>{nouveauArticle.etat[0].name}</Badge> 
-                    <Badge variant="outline" className={tools.definePublicBadgeColor(nouveauArticle.public)}>{nouveauArticle.public ? 'Public' : 'Privé'}</Badge>
+                    <Badge variant="outline" className={tools.defineBadgecolor(nouveauArticle.etat[0].couleur)}>{nouveauArticle.etat[0].name}</Badge>
+                    <Select props={{nouveauArticle}} />
                 </div>
             </div>
             <div className="p-4">&emsp;{nouveauArticle.presentation}</div>
