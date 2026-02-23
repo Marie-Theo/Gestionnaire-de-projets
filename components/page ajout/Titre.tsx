@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect, useState } from 'react';
-import { Badge } from "@/components/ui/badge";
-import {  Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList, ComboboxChips, ComboboxValue, ComboboxChipsInput, ComboboxChip } from "@/components/ui/combobox";
-import { tools } from "@/components/tools";
-import BadgesOutils from "@/components/page projets/components/badgesOutils";
-import { Input } from "@base-ui/react";
-import Select from '@/components/page ajout/components/select'
+import { Dispatch, SetStateAction } from "react"
+import Select from '@/components/page ajout/components/select';
+import SelectList from '@/components/page ajout/components/selectEtat';
+import SelectBadges from '@/components/page ajout/components/selectBadges';
+import InputRepo from '@/components/page ajout/components/InputRepo';
+import InputTitle from '@/components/page ajout/components/inputTitle';
+import InputDesc from '@/components/page ajout/components/inputDesc';
 
 interface projetProps {
     id: number;
@@ -37,7 +37,7 @@ interface OutilsProps {
     }[];
 }
 
-export default function Titre({props}:{props:{nouveauArticle:projetProps, setNouveauArticle: (nouveauArticle: projetProps) => void, outil:OutilsProps, etat:etatProps, nouveauOutils:any[], setNouveauOutils: (nouveauOutils: any[]) => void}}){
+export default function Titre({props}:{props:{nouveauArticle:projetProps, setNouveauArticle: (nouveauArticle: projetProps) => void, outil:OutilsProps, etat:etatProps[], nouveauOutils:any[], setNouveauOutils: Dispatch<SetStateAction<string[]>> }}){
 
     const {nouveauArticle,setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils} = props;
 
@@ -48,25 +48,22 @@ export default function Titre({props}:{props:{nouveauArticle:projetProps, setNou
     });
 
     console.log(nouveauArticle);
+
     return(
         <div className="col-span-3 xl:col-span-2 pr-5">
-            { nouveauArticle.title != '' ?(<title>{nouveauArticle.title}</title>):null}
+            <title>{ nouveauArticle.title != '' ?nouveauArticle.title:"Création d'un projet"}</title>
             <div className="flex">
                 <div className="text-3xl flex-1">{nouveauArticle.title}</div>
-                <div className="flex-none content-center flex flex-wrap gap-1">
-                    <BadgesOutils props={{id_projet:nouveauArticle.id,outils:nouveauOutils}} />
-                    <Badge variant="outline" className={tools.defineBadgecolor(nouveauArticle.etat[0].couleur)}>{nouveauArticle.etat[0].name}</Badge>
-                    <Select props={{nouveauArticle}} />
+                <div className="flex-none content-center flex gap-1">
+                    <SelectBadges props={{nouveauOutils, outils:tableau,setNouveauOutils}} /> 
+                    <div className="flex items-center">
+                        <SelectList props={{nouveauArticle,etat}} />
+                        <Select props={{nouveauArticle}} />
+                    </div>
                 </div>
             </div>
             <div className="p-4">&emsp;{nouveauArticle.presentation}</div>
-            { nouveauArticle.repositories != null ?(
-                <div>Repositories :&nbsp;
-                    <a href={nouveauArticle.repositories} className="text-blue-500 hover:text-blue-600 hover:underline underline-offset-0" target="_blank">
-                        {nouveauArticle.repositories}
-                    </a>
-                </div>
-            ):null}
+            <InputRepo props={{nouveauArticle}}/>
         </div>
     );
 }
