@@ -5,7 +5,7 @@ import Select from '@/components/page ajout/components/select';
 import SelectList from '@/components/page ajout/components/selectEtat';
 import SelectBadges from '@/components/page ajout/components/selectBadges';
 import InputRepo from '@/components/page ajout/components/InputRepo';
-import InputTitle from '@/components/page ajout/components/inputTitle';
+import InputTitle from '@/components/page ajout/components/InputTitle';
 import InputDesc from '@/components/page ajout/components/inputDesc';
 
 interface projetProps {
@@ -47,22 +47,21 @@ export default function Titre({props}:{props:{nouveauArticle:projetProps, setNou
         tableau.push(element.name);
     });
 
-    console.log(nouveauArticle);
-
     return(
         <div className="col-span-3 xl:col-span-2 pr-5">
             <title>{ nouveauArticle.title != '' ?nouveauArticle.title:"Création d'un projet"}</title>
-            <div className="flex">
-                <div className="text-3xl flex-1">{nouveauArticle.title}</div>
+            <div className="flex gap-1">
+                <InputTitle props={{nouveauArticle}}/>
                 <div className="flex-none content-center flex gap-1">
-                    <SelectBadges props={{nouveauOutils, outils:tableau,setNouveauOutils}} /> 
                     <div className="flex items-center">
+                    <SelectBadges props={{nouveauOutils, outils:tableau,setNouveauOutils}} /> 
                         <SelectList props={{nouveauArticle,etat}} />
                         <Select props={{nouveauArticle}} />
                     </div>
                 </div>
             </div>
-            <div className="p-4">&emsp;{nouveauArticle.presentation}</div>
+            {/* <div className="p-4">&emsp;{nouveauArticle.presentation}</div> */}
+            <InputDesc props={{nouveauArticle}}/>
             <InputRepo props={{nouveauArticle}}/>
         </div>
     );
