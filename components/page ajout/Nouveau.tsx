@@ -1,4 +1,5 @@
 import Entete from "@/components/page ajout/Entete";
+import Contante from "../page ajout/Contante";
 import { Dispatch, SetStateAction } from "react"
 
 interface projetProps {
@@ -38,9 +39,11 @@ export default function Nouveau({props}:{props:{categorie:categorieProps[],setCa
 
     const {categorie,setCategorie,nouveauArticle, setNouveauArticle,nouvelDocumentation, setNouvelDocumentation, outil, etat, nouveauOutils, setNouveauOutils}  = props;
 
+    console.log(nouvelDocumentation);
     return (
         <div>
-            <Entete props={{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils}}/>
+            <Entete props={{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils, nouvelDocumentation, setNouvelDocumentation}}/>
+            <Contante props={{nouvelDocumentation}} />
         </div>
     );
 }
