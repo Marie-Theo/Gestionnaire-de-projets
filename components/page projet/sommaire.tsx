@@ -32,7 +32,7 @@ export default function Sommaire({props}:{props:{documentation:documentationProp
 
     return (
         documentation.length > 0?(
-            <Card className="col-span-3 md:col-span-2 xl:col-span-1 p-5 pt-4 gap-0">
+            <Card className="col-span-3 md:col-span-2 xl:col-span-1 p-5 pt-4 gap-0 h-min">
                 <h1 className="text-xl">Sommaire :</h1>
                 <div className="pl-3">
                     {documentation.map((categorie) => (

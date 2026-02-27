@@ -30,9 +30,9 @@ export default function Home() {
 		) : page === "compte" ? (
 			<Compte props={{ projetUser, setProjetUser, outils, user, setPage, lien, setLastProjets, setArticle, setDocumentation}} />
 		) : page === "Connexion" ? (
-			<FormConnexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setArticle }} />
+			<FormConnexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setArticle, setCategorie }} />
 		) : page === "Nouveaux" ? (
-			<Nouveau props={{categorie,setCategorie,nouveauArticle, setNouveauArticle,nouvelDocumentation, setNouvelDocumentation,outil,etat,nouveauOutils, setNouveauOutils}}/>
+			<Nouveau props={{categorie,setCategorie,nouveauArticle, setNouveauArticle,nouvelDocumentation, setNouvelDocumentation,outil,etat,nouveauOutils, setNouveauOutils, categorie, setCategorie}}/>
 		) : null}
 		<Menu props={{user, page, setPage}} />
 	</section>

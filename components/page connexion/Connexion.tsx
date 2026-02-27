@@ -9,6 +9,7 @@ import fetchProjet from "@/hooks/fetch/fetchProjet";
 import fetchLastSeenProjet from "@/hooks/fetch/fetchProjet";
 import fetchProjetUser from "@/hooks/fetch/fetchProjetUser";
 import fetchLien from "@/hooks/fetch/fetchLien";
+import fetchCategorie from '@/hooks/fetch/fetchCatégorie';
 
 interface userProps {
     id: number;
@@ -43,9 +44,9 @@ interface lienProps {
     url:string;
 }
 
-export default function FormConnexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: projetProps[]) => void, setLastProjets: (lastProjets: projetProps[]) => void, setProjetUser: (projetUser: lienProps[]) => void, setLien: (lien: lienProps[]) => void}}) {
+export default function FormConnexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: projetProps[]) => void, setLastProjets: (lastProjets: projetProps[]) => void, setProjetUser: (projetUser: lienProps[]) => void, setLien: (lien: lienProps[]) => void, setCategorie: (categorie: any[]) => void}}) {
 
-    const { user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien } = props;
+    const { user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setCategorie } = props;
     const [Erreur_Formulaire_inscription, setErreur_Formulaire_inscription] = useState<any>('false');
     const login_pseudo = useRef<any>(null);
     const login_MDP = useRef<any>(null);
@@ -80,7 +81,8 @@ export default function FormConnexion({props}: {props:{ user:userProps, setUser:
                 fetchProjet(data.id, setProjets);
                 fetchLastSeenProjet(data.id, setLastProjets);
                 fetchProjetUser(data.id, setProjetUser);
-                fetchLien(data.id,setLien);
+                fetchLien(data.id,setLien);        
+                fetchCategorie(setCategorie);
                 setPage('compte');
             }
             return false;

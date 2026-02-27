@@ -1,4 +1,8 @@
+"use client"
+
 import { Card } from "@/components/ui/card";
+import { Dispatch, SetStateAction } from "react";
+import ChoixCategorie from "@/components/page ajout/components/choixCatégorie";
 
 interface documentationProps {
     id:number;
@@ -11,26 +15,26 @@ interface documentationProps {
     text:string;
 }
 
-export default function contante({props}:{props:{nouvelDocumentation:documentationProps[]}}){
+interface categorieProps {
+    id:number;
+    text:string;
+    ordre:number;
+    style:number;
+};
 
-    const {nouvelDocumentation} = props;
+export default function contante({props}:{props:{nouvelDocumentation:documentationProps[], setNouvelDocumentation: (nouvelDocumentation: documentationProps[]) => void,categorie:categorieProps[],setCategorie: Dispatch<SetStateAction<categorieProps[]>>}}){
+
+    const {nouvelDocumentation, setNouvelDocumentation, categorie, setCategorie} = props;
     const obj = {temps:''};
-
-    function writeTitle(text:string){
-        obj.temps = text;
-        return (
-            <h2 id={text} className="text-2xl mt-10">
-                {text} :
-            </h2>
-        );
-    }
 
     return (
         <div>
-            {nouvelDocumentation.map((section) => (
+            {nouvelDocumentation.map((section, index) => (
                 <div key={section.id}>
                     { section.id_categorie.text != obj.temps ?(
-                        writeTitle(section.id_categorie.text)
+                        <div className="min-w-[40%] w-min mt-10">
+                            <ChoixCategorie props={{defaultText:section.id_categorie.text, sectionIndex:index, categorie, setCategorie, setNouvelDocumentation}} />
+                        </div>
                     ):null}
                     <div>
                         { section.id_categorie.style == 1 ?(

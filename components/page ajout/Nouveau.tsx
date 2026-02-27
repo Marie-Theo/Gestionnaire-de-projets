@@ -35,7 +35,7 @@ interface categorieProps {
     style:number;
 };
 
-export default function Nouveau({props}:{props:{categorie:categorieProps[],setCategorie: (categorie: categorieProps[]) => void,nouveauArticle:projetProps, setNouveauArticle: (nouveauArticle: projetProps) => void,nouvelDocumentation:documentationProps[], setNouvelDocumentation: (nouvelDocumentation: documentationProps[]) => void,outil:any,etat:any, nouveauOutils:any[], setNouveauOutils: Dispatch<SetStateAction<string[]>> }}){
+export default function Nouveau({props}:{props:{categorie:categorieProps[],setCategorie: (categorie: categorieProps[]) => void,nouveauArticle:projetProps, setNouveauArticle: (nouveauArticle: projetProps) => void,nouvelDocumentation:documentationProps[], setNouvelDocumentation: (nouvelDocumentation: documentationProps[]) => void,outil:any,etat:any, nouveauOutils:any[], setNouveauOutils: Dispatch<SetStateAction<string[]>>}}){
 
     const {categorie,setCategorie,nouveauArticle, setNouveauArticle,nouvelDocumentation, setNouvelDocumentation, outil, etat, nouveauOutils, setNouveauOutils}  = props;
 
@@ -43,7 +43,7 @@ export default function Nouveau({props}:{props:{categorie:categorieProps[],setCa
     return (
         <div>
             <Entete props={{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils, nouvelDocumentation, setNouvelDocumentation}}/>
-            <Contante props={{nouvelDocumentation}} />
+            <Contante props={{nouvelDocumentation, setNouvelDocumentation,categorie,setCategorie}} />
         </div>
     );
 }
