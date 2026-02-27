@@ -1,6 +1,6 @@
 import Titre from "@/components/page ajout/Titre";
-import Sommaire from "../page projet/sommaire";
-import { Dispatch, SetStateAction } from "react"
+import Sommaire from "@/components/page projet/sommaire";
+import { Dispatch, SetStateAction, useEffect } from "react"
 
 interface documentationProps {
     id:number;
@@ -17,6 +17,7 @@ export default function Entete({props}:{props:{nouveauArticle:any, setNouveauArt
 
     const {nouveauArticle,setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils, nouvelDocumentation} = props;
 
+    console.log(nouvelDocumentation);
     return (
         <div className="grid grid-cols-3 gap-5 xl:gap-1">
             <Titre props={{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils}}/>

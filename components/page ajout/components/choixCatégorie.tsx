@@ -19,13 +19,13 @@ interface documentationProps {
         text:string;
         ordre:number;
         style:number;
-    }[];
+    };
     text:string;
 }
 
 
-export default function ChoixCategorie({props}: {props: {defaultText: string, sectionIndex: number, categorie: categorieProps[],setCategorie: Dispatch<SetStateAction<categorieProps[]>>, setNouvelDocumentation: Dispatch<SetStateAction<documentationProps[]>>}}) {
-    const { defaultText, sectionIndex, categorie, setCategorie, setNouvelDocumentation } = props
+export default function ChoixCategorie({props}: {props: {nouvelDocumentation: documentationProps[], sectionIndex: number, categorie: categorieProps[],setCategorie: Dispatch<SetStateAction<categorieProps[]>>, setNouvelDocumentation: Dispatch<SetStateAction<documentationProps[]>>}}) {
+    const { nouvelDocumentation, sectionIndex, categorie, setCategorie, setNouvelDocumentation } = props
 
     function handleCreate(value: string) {
         const trimmed = value.trim()
@@ -57,14 +57,14 @@ export default function ChoixCategorie({props}: {props: {defaultText: string, se
 
             return {
                 ...doc,
-                id_categorie: [selectedCategorie]
+                id_categorie: selectedCategorie
             }
             })
         )
     }
 
-    return (    
-        <Combobox items={categorie.map(c => c.text)} value={defaultText} onValueChange={(value) => handleSelect(value)}>
+    return (
+        <Combobox items={categorie.map(c => c.text)} value={nouvelDocumentation[sectionIndex].id_categorie.text} onValueChange={(value) => handleSelect(value)}>
             <ComboboxInput
                 placeholder="Select a category"
                 onKeyDown={(e) => {

@@ -22,7 +22,7 @@ interface categorieProps {
     style:number;
 };
 
-export default function contante({props}:{props:{nouvelDocumentation:documentationProps[], setNouvelDocumentation: (nouvelDocumentation: documentationProps[]) => void,categorie:categorieProps[],setCategorie: Dispatch<SetStateAction<categorieProps[]>>}}){
+export default function contante({props}:{props:{nouvelDocumentation:documentationProps[], setNouvelDocumentation: Dispatch<SetStateAction<documentationProps[]>>,categorie:categorieProps[],setCategorie: Dispatch<SetStateAction<categorieProps[]>>}}){
 
     const {nouvelDocumentation, setNouvelDocumentation, categorie, setCategorie} = props;
     const obj = {temps:''};
@@ -31,9 +31,9 @@ export default function contante({props}:{props:{nouvelDocumentation:documentati
         <div>
             {nouvelDocumentation.map((section, index) => (
                 <div key={section.id}>
-                    { section.id_categorie.text != obj.temps ?(
+                    { nouvelDocumentation[index].id_categorie.text != obj.temps ?(
                         <div className="min-w-[40%] w-min mt-10">
-                            <ChoixCategorie props={{defaultText:section.id_categorie.text, sectionIndex:index, categorie, setCategorie, setNouvelDocumentation}} />
+                            <ChoixCategorie props={{nouvelDocumentation, sectionIndex:index, categorie, setCategorie, setNouvelDocumentation}} />
                         </div>
                     ):null}
                     <div>

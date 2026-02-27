@@ -24,7 +24,7 @@ interface documentationProps {
         text:string;
         ordre:number;
         style:number;
-    }[];
+    };
     text:string;
 };
 
@@ -35,11 +35,10 @@ interface categorieProps {
     style:number;
 };
 
-export default function Nouveau({props}:{props:{categorie:categorieProps[],setCategorie: (categorie: categorieProps[]) => void,nouveauArticle:projetProps, setNouveauArticle: (nouveauArticle: projetProps) => void,nouvelDocumentation:documentationProps[], setNouvelDocumentation: (nouvelDocumentation: documentationProps[]) => void,outil:any,etat:any, nouveauOutils:any[], setNouveauOutils: Dispatch<SetStateAction<string[]>>}}){
+export default function Nouveau({props}:{props:{categorie:categorieProps[],setCategorie: (categorie: categorieProps[]) => void,nouveauArticle:projetProps, setNouveauArticle: (nouveauArticle: projetProps) => void,nouvelDocumentation:documentationProps[], setNouvelDocumentation: Dispatch<SetStateAction<documentationProps[]>>,outil:any,etat:any, nouveauOutils:any[], setNouveauOutils: Dispatch<SetStateAction<string[]>>}}){
 
     const {categorie,setCategorie,nouveauArticle, setNouveauArticle,nouvelDocumentation, setNouvelDocumentation, outil, etat, nouveauOutils, setNouveauOutils}  = props;
 
-    console.log(nouvelDocumentation);
     return (
         <div>
             <Entete props={{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils, nouvelDocumentation, setNouvelDocumentation}}/>
