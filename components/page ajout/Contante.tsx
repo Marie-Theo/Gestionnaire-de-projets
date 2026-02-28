@@ -1,6 +1,6 @@
 "use client"
 
-import { Card } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { Dispatch, SetStateAction } from "react";
 import ChoixCategorie from "@/components/page ajout/components/choixCatégorie";
 
@@ -25,24 +25,29 @@ interface categorieProps {
 export default function contante({props}:{props:{nouvelDocumentation:documentationProps[], setNouvelDocumentation: Dispatch<SetStateAction<documentationProps[]>>,categorie:categorieProps[],setCategorie: Dispatch<SetStateAction<categorieProps[]>>}}){
 
     const {nouvelDocumentation, setNouvelDocumentation, categorie, setCategorie} = props;
-    const obj = {temps:''};
+    let lastCategorie:any = null;
+    
+    function inputChangeHandler(e: React.ChangeEvent<HTMLTextAreaElement>, index: number){
+        const updatedDocumentation = [...nouvelDocumentation];
+        updatedDocumentation[index].text = e.target.value;
+        setNouvelDocumentation(updatedDocumentation);
+    }
 
     return (
         <div>
             {nouvelDocumentation.map((section, index) => (
                 <div key={section.id}>
-                    { nouvelDocumentation[index].id_categorie.text != obj.temps ?(
-                        <div className="min-w-[40%] w-min mt-10">
+                    { nouvelDocumentation[index].id_categorie.text != lastCategorie ?(
+                        lastCategorie = nouvelDocumentation[index].id_categorie.text,
+                        <div className="min-w-[40%] w-min mt-10" id={nouvelDocumentation[index].id_categorie.text.toString()}>
                             <ChoixCategorie props={{nouvelDocumentation, sectionIndex:index, categorie, setCategorie, setNouvelDocumentation}} />
                         </div>
                     ):null}
-                    <div>
-                        { section.id_categorie.style == 1 ?(
-                            <div className="m-5">&emsp;{section.text}</div>
-                        ) : section.id_categorie.style == 2 ?(
-                            <Card className="m-3 ml-5 p-3">{section.text}</Card>
-                        ) : null}
-                    </div>
+                    { nouvelDocumentation[index].id_categorie.text != "" ?(
+                        <div className="m-5">
+                            <Textarea onChange={(e)=>{inputChangeHandler(e, index);}} placeholder="..." defaultValue={nouvelDocumentation[index].text} />
+                        </div>
+                    ) : null}
                 </div>
             ))}
         </div>

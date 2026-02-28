@@ -54,7 +54,7 @@ export default function Titre({props}:{props:{nouveauArticle:projetProps, setNou
                 <InputTitle props={{nouveauArticle}}/>
                 <div className="flex-none content-center flex gap-1">
                     <div className="flex items-center">
-                    <SelectBadges props={{nouveauOutils, outils:tableau,setNouveauOutils}} /> 
+                        <SelectBadges nouveauOutils={nouveauOutils} outils={tableau} setNouveauOutils={setNouveauOutils} /> 
                         <SelectList props={{nouveauArticle,etat}} />
                         <Select props={{nouveauArticle}} />
                     </div>

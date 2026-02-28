@@ -79,8 +79,8 @@ export default function getProjet () {
     const [documentation, setDocumentation] = useState<documentationProps[]>([]);
     const [categorie,setCategorie] = useState<categorieProps[]>([]);
     const [nouveauArticle, setNouveauArticle] = useState<projetProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:false });
-    const [nouvelDocumentation, setNouvelDocumentation] = useState<documentationProps[]>([{id:0,id_categorie:{id:0,text:'test',ordre:0,style:0},text:''}]);
-    const [nouveauOutils, setNouveauOutils] = useState<string[]>([])
+    const [nouvelDocumentation, setNouvelDocumentation] = useState<documentationProps[]>([{id:0,id_categorie:{id:0,text:'',ordre:0,style:1},text:''}]);
+    const [nouveauOutils, setNouveauOutils] = useState<string[]>([]);
 
     useEffect(() => {
         async function fetchProjets() {

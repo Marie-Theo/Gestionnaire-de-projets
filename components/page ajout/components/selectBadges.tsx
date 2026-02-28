@@ -1,12 +1,10 @@
 "use client"
 
-"------- creatable combobox Créer avec chat gpt -------"
+// creatable combobox Créer avec chat gpt 
 
 import { Dispatch, SetStateAction, useState, useEffect } from "react"
-import {  Combobox, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList, ComboboxChips, ComboboxValue, ComboboxChipsInput, ComboboxChip, useComboboxAnchor } from "@/components/ui/combobox";
-
-export default function SelectBadges({ props }: { props: { nouveauOutils: string[]; outils: string[], setNouveauOutils: Dispatch<SetStateAction<string[]>> }}) {
-    const { nouveauOutils, setNouveauOutils, outils } = props
+import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList, ComboboxChips, ComboboxValue, ComboboxChipsInput, ComboboxChip, useComboboxAnchor } from "@/components/ui/combobox";
+export default function SelectBadges({ nouveauOutils, outils, setNouveauOutils}: {  nouveauOutils: string[],  outils: string[],  setNouveauOutils: Dispatch<SetStateAction<string[]>>}) {
 
     const anchor = useComboboxAnchor()
   
@@ -31,52 +29,52 @@ export default function SelectBadges({ props }: { props: { nouveauOutils: string
         }
 
         if (!nouveauOutils.includes(trimmed)) {
-        setNouveauOutils(prev => [...prev, trimmed])
+            setNouveauOutils(prev => [...prev, trimmed])
         }
     }
 
     return (
-    <Combobox
-        multiple
-        items={items}
-        value={nouveauOutils}
-        onValueChange={setNouveauOutils}
-    >
-        <ComboboxChips ref={anchor} className="w-full max-w-xs">
-            <ComboboxValue>
-            {(values) => (
-                <>
-                {values.map((value: string) => (
-                    <ComboboxChip key={value}>{value}</ComboboxChip>
-                ))}
+        <Combobox
+            multiple
+            items={items}
+            value={nouveauOutils}
+            onValueChange={setNouveauOutils}
+        >
+            <ComboboxChips ref={anchor} className="w-full max-w-xs">
+                <ComboboxValue>
+                {(values) => (
+                    <>
+                    {values.map((value: string) => (
+                        <ComboboxChip key={value}>{value}</ComboboxChip>
+                    ))}
 
-                <ComboboxChipsInput
-                    onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                        e.preventDefault();
-                        handleCreate((e.target as HTMLInputElement).value);(
-                        e.target as HTMLInputElement).value = "";
-                    }
-                    }}
-                />
-                </>
-            )}
-            </ComboboxValue>
-        </ComboboxChips>
+                    <ComboboxChipsInput
+                        onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                            handleCreate((e.target as HTMLInputElement).value);
+                            (e.target as HTMLInputElement).value = "";
+                        }
+                        }}
+                    />
+                    </>
+                )}
+                </ComboboxValue>
+            </ComboboxChips>
 
-        <ComboboxContent anchor={anchor}>
-            <ComboboxEmpty>
-            Appuyez sur Entrée pour ajouter
-            </ComboboxEmpty>
+            <ComboboxContent anchor={anchor}>
+                <ComboboxEmpty>
+                Appuyez sur Entrée pour ajouter
+                </ComboboxEmpty>
 
-            <ComboboxList>
-            {(item) => (
-                <ComboboxItem key={item} value={item}>
-                {item}
-                </ComboboxItem>
-            )}
-            </ComboboxList>
-        </ComboboxContent>
+                <ComboboxList>
+                {(item) => (
+                    <ComboboxItem key={item} value={item}>
+                    {item}
+                    </ComboboxItem>
+                )}
+                </ComboboxList>
+            </ComboboxContent>
         </Combobox>
     )
 }

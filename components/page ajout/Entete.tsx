@@ -17,10 +17,9 @@ export default function Entete({props}:{props:{nouveauArticle:any, setNouveauArt
 
     const {nouveauArticle,setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils, nouvelDocumentation} = props;
 
-    console.log(nouvelDocumentation);
     return (
         <div className="grid grid-cols-3 gap-5 xl:gap-1">
-            <Titre props={{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils}}/>
+            <Titre props={{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils}}/>
             <Sommaire props={{documentation:nouvelDocumentation}}/>
         </div>
     );
