@@ -1,10 +1,10 @@
 "use client"
 
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction } from "react";
-import ChoixCategorie from "@/components/page ajout/components/choixCatégorie";
 import { tools } from "@/components/page ajout/toolsNewDoc";
+import ChoixCategorie from "@/components/page ajout/components/choixCatégorie";
+import InputText from "@/components/page ajout/components/inputText";
 
 interface documentationProps {
     id:number;
@@ -29,12 +29,6 @@ export default function contante({props}:{props:{nouvelDocumentation:documentati
     const {nouvelDocumentation, setNouvelDocumentation, categorie, setCategorie} = props;
     let lastCategorie:any = null;
     
-    function inputChangeHandler(e: React.ChangeEvent<HTMLTextAreaElement>, index: number){
-        const updatedDocumentation = [...nouvelDocumentation];
-        updatedDocumentation[index].text = e.target.value;
-        setNouvelDocumentation(updatedDocumentation);
-    }
-
     return (
         <div>
             {nouvelDocumentation.map((section, index) => (
@@ -56,9 +50,7 @@ export default function contante({props}:{props:{nouvelDocumentation:documentati
                         </div>
                     ) : null}
                     { nouvelDocumentation[index].id_categorie.text != "" ?(
-                        <div className="m-5 mb-2">
-                            <Textarea onChange={(e)=>{inputChangeHandler(e, index);}} placeholder="..." defaultValue={nouvelDocumentation[index].text} />
-                        </div>
+                        <InputText nouvelDocumentation={nouvelDocumentation} index={index} setNouvelDocumentation={setNouvelDocumentation} />
                     ) : null}
                 </div>
             ))}

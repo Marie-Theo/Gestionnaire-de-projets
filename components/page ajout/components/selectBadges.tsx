@@ -49,6 +49,7 @@ export default function SelectBadges({ nouveauOutils, outils, setNouveauOutils}:
                     ))}
 
                     <ComboboxChipsInput
+                        placeholder={nouveauOutils.length > 0 ? "..." : "Ajouter des outils..."}
                         onKeyDown={(e) => {
                         if (e.key === "Enter") {
                             e.preventDefault();

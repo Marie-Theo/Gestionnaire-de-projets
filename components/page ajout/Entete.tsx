@@ -1,6 +1,6 @@
 import Titre from "@/components/page ajout/Titre";
 import Sommaire from "@/components/page projet/sommaire";
-import { Dispatch, SetStateAction, useEffect } from "react"
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface documentationProps {
     id:number;

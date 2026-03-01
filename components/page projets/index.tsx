@@ -37,7 +37,7 @@ export default function index({props}:{props:{projets: projetProps[], outil: any
 
     return (
         <section id="accueil" >
-            <Entete props={{projets, outil, outils, etat, users, setPage}} />
+            <Entete props={{projets, outil, outils, etat, users, setPage, setArticle, setDocumentation}} />
             <ListingProjet props={{projets:lastProjets, outils, title:"Projets récemment vus", setPage, user, setLastProjets, setArticle, setDocumentation}} />
             <ListingProjet props={{projets, outils, title:"Tous les projets", setPage, user, setLastProjets, setArticle, setDocumentation}} />
         </section>

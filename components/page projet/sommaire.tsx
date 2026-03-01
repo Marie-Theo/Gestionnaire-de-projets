@@ -24,7 +24,7 @@ export default function Sommaire({props}:{props:{documentation:documentationProp
         return documentation.filter((categorie) => {
         const text = categorie.id_categorie.text;
 
-        if (seen.has(text)) return false;
+        if (seen.has(text) || text == "") return false;
 
         seen.add(text);
         return true;
@@ -39,19 +39,18 @@ export default function Sommaire({props}:{props:{documentation:documentationProp
 
         <div className="pl-3">
             {categoriesUniques.map((categorie) => {
-            const text = categorie.id_categorie.text;
-
-            return (
-                <div key={categorie.id}>
-                -&nbsp;
-                <a
-                    href={`#${text}`}
-                    className="hover:underline underline-offset-1"
-                >
-                    {text}
-                </a>
-                </div>
-            );
+                const text = categorie.id_categorie.text;
+                return (
+                    <div key={categorie.id}>
+                        -&nbsp;
+                        <a
+                            href={`#${text}`}
+                            className="hover:underline underline-offset-1"
+                        >
+                            {text}
+                        </a>
+                    </div>
+                );
             })}
         </div>
         </Card>

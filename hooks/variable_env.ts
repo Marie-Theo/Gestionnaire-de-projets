@@ -73,7 +73,7 @@ export default function getProjet () {
     const [users, setUsers] = useState<any[]>([]);
     const [user, setUser] = useState<userProps>({ id: 0, name: '', mdp: '', theme: '', presentation: '', created_at: '' });
     const id_user:number = user.id;
-    const [page, setPage] = useState<string>("Nouveaux");//"Nouveaux""projets"
+    const [page, setPage] = useState<string>("projets");//"Nouveaux""projets"
     const [lien, setLien] = useState<lienProps[]>([]);
     const [article, setArticle] = useState<projetProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:true });
     const [documentation, setDocumentation] = useState<documentationProps[]>([]);

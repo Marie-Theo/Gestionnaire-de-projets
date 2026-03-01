@@ -11,7 +11,6 @@ interface documentationProps {
     text:string;
 }
 
-
 export const tools = {
     InsertDoc: (nouvelDocumentation: documentationProps[], setNouvelDocumentation: (docs: documentationProps[]) => void, index: number) => {
         const newDocs = [...nouvelDocumentation];
@@ -21,7 +20,6 @@ export const tools = {
     InsertNewLastDoc: (nouvelDocumentation: documentationProps[], setNouvelDocumentation: (docs: documentationProps[]) => void) => {
         const newDocs = [...nouvelDocumentation];
         newDocs.push({id: Date.now() + Math.random(), id_categorie: {id: 0, text: '', ordre: 0, style: 0}, text: ''});
-        console.log(newDocs);
         setNouvelDocumentation(newDocs);
     },
     countArray: (nouvelDocumentation: documentationProps[], categorie: string) => {
@@ -32,5 +30,22 @@ export const tools = {
             }
         }
         return numberCatInArray ;
-    }
+    },
+    removeArray: (nouvelDocumentation: documentationProps[], setNouvelDocumentation: (docs: documentationProps[]) => void, index: number) => {
+        let updatedDocumentation:any[] = [];
+        nouvelDocumentation.map((doc, i) => {
+            if (i !== index) {
+                updatedDocumentation.push(doc);
+            }});
+        setNouvelDocumentation(updatedDocumentation);
+    },
+    changeOrderArray: (nouvelDocumentation: documentationProps[], setNouvelDocumentation: (docs: documentationProps[]) => void, index: number) => {
+        let updatedDocumentation:any[] = [...nouvelDocumentation];
+        if (index > 0 && index < nouvelDocumentation.length) {
+            const temp = updatedDocumentation[index - 1];
+            updatedDocumentation[index - 1] = updatedDocumentation[index];
+            updatedDocumentation[index] = temp;
+            setNouvelDocumentation(updatedDocumentation);
+        }
+    },
 };

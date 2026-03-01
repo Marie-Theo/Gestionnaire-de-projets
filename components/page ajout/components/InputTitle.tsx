@@ -28,8 +28,8 @@ export default function InputPresentation({ props }: { props: { nouveauArticle: 
     
     return (
         <div className="mb-5 text-3xl flex-1">
-            <Label htmlFor="presentation" className="mb-2">Nom du projet&nbsp;:</Label>
-            <Input id="presentation" type="text" onChange={(e)=>{inputChangeHandler(e);}} placeholder="" defaultValue={nouveauArticle.title} />
+            <Label htmlFor="presentation">Nom du projet&nbsp;:</Label>
+            <Input className="w-max" id="presentation" type="text" onChange={(e)=>{inputChangeHandler(e);}} defaultValue={nouveauArticle.title} />
         </div>
         );
     }

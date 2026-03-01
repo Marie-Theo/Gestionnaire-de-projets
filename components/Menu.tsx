@@ -16,14 +16,13 @@ export default function Menu({props}: {props:{user: userProps, page: string, set
     <Card className="fixed bottom-4 left-[15%]  w-[70%] max-h-[10%] bg-white border-t border-gray-200 pt-[0.5%] pb-[0.5%]">
         <div className="container mx-auto flex justify-around">
             { user.name !=='' ?
-                <Button variant={tools.isPage(page, "Nouveaux")} onClick={() => setPage("Nouveaux")} className="text-xl">Nouveaux</Button>
+                <Button variant={tools.isPage(page, "Nouveaux")} onClick={() => setPage("Nouveaux")} className="text-sm xs:text-xs lg:text-lg xl:text-xl">Nouveaux</Button>
                 : null
             }
-            <Button variant={tools.isPage(page, "projets")} onClick={() => setPage("projets")} className="text-xl">Projets</Button>
-            <Button variant={tools.isPage(page, "a-propos")} onClick={() => setPage("a-propos")} className="text-xl">À propos</Button>
+            <Button variant={tools.isPage(page, "projets")} onClick={() => setPage("projets")} className="text-sm xs:text-xs lg:text-lg xl:text-xl">Projets</Button>
             { user.name !=='' ? 
-                <Button variant={tools.isPage(page, "compte")} onClick={() => setPage("compte")} className="text-xl">Compte</Button>
-                : <Button variant={tools.isPage(page, "Connexion")} onClick={() => setPage("Connexion")} className="text-xl">Connexion</Button>
+                <Button variant={tools.isPage(page, "compte")} onClick={() => setPage("compte")} className="text-sm xs:text-xs lg:text-lg xl:text-xl">Compte</Button>
+                : <Button variant={tools.isPage(page, "Connexion")} onClick={() => setPage("Connexion")} className="text-sm xs:text-xs lg:text-lg xl:text-xl">Connexion</Button>
             }
         </div>
     </Card>

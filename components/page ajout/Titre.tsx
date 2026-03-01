@@ -50,17 +50,12 @@ export default function Titre({props}:{props:{nouveauArticle:projetProps, setNou
     return(
         <div className="col-span-3 xl:col-span-2 pr-5">
             <title>{ nouveauArticle.title != '' ?nouveauArticle.title:"Création d'un projet"}</title>
-            <div className="flex gap-1">
+            <div className="flex-none content-center flex gap-1 flex items-center">
                 <InputTitle props={{nouveauArticle}}/>
-                <div className="flex-none content-center flex gap-1">
-                    <div className="flex items-center">
-                        <SelectBadges nouveauOutils={nouveauOutils} outils={tableau} setNouveauOutils={setNouveauOutils} /> 
-                        <SelectList props={{nouveauArticle,etat}} />
-                        <Select props={{nouveauArticle}} />
-                    </div>
-                </div>
+                <SelectBadges nouveauOutils={nouveauOutils} outils={tableau} setNouveauOutils={setNouveauOutils} /> 
+                <SelectList props={{nouveauArticle,etat}} />
+                <Select props={{nouveauArticle}} />
             </div>
-            {/* <div className="p-4">&emsp;{nouveauArticle.presentation}</div> */}
             <InputDesc props={{nouveauArticle}}/>
             <InputRepo props={{nouveauArticle}}/>
         </div>
