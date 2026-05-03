@@ -11,9 +11,8 @@ interface documentationProps {
     text:string;
 }
 
-export default function contante({props}:{props:{documentation:documentationProps[]}}){
+export default function Contante({documentation}:{documentation:documentationProps[]}){
 
-    const {documentation} = props;
     const obj = {temps:''};
 
     function writeTitle(text:string){

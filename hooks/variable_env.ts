@@ -13,7 +13,7 @@ interface projetProps {
     etat: {
         name: string,
         couleur: string
-    }[];
+    };
     id_user: number;
     public: boolean;
 }

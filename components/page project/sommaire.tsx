@@ -14,9 +14,7 @@ interface documentationProps {
     text:string;
 }
 
-export default function Sommaire({props}:{props:{documentation:documentationProps[]}}){
-
-    const { documentation } = props;
+export default function Sommaire({documentation}:{documentation:documentationProps[]}){
 
     const categoriesUniques = useMemo(() => {
         const seen = new Set<string>();
