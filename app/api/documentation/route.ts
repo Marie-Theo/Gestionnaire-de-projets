@@ -9,11 +9,14 @@ export async function GET(request: Request, response: Response){
 
     const projectId = url.searchParams.get('id');
 
-    // Récupérer le projet depuis supabase
+    // Récupérer la documentation depuis supabase
     const { data, error } = await supabase
-        .from('projets')
-        .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
-        .eq("id", projectId);
+        .from('documentations')
+        .select('id, id_categorie ( id, text, ordre, style ), text')
+        .eq("id_projet", projectId)
+        .order('id_categorie', { ascending: true })
+        .order('id', { ascending: true })
+        .order('ordre', { referencedTable: 'id_categorie', ascending: false });
 
     if (error) console.error(error);
     else {

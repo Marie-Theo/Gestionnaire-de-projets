@@ -1,5 +1,5 @@
-// import Entete from "@/components/page project/entete";
-// import Contante from "@/components/page project/contenu";
+import Entete from "@/components/page project/entete";
+import Contante from "@/components/page project/contenu";
 
 interface documentationProps {
     id:number;
@@ -29,7 +29,7 @@ interface projectProps {
 // il faudra faire d'autre fetch car tous n'est pas dans le http://localhost:3000/api/project
 export default async function Pageproject({ params } : {params : { projectId : string }}) {
 
-    const { projectId } = await params
+    const { projectId } = await params;
 
     const response = await fetch(`http://localhost:3000/api/project?id=${projectId}` , {
         method : 'GET',
@@ -38,13 +38,31 @@ export default async function Pageproject({ params } : {params : { projectId : s
             'Pragma' : 'no-cache',
             'Expires' : '0'
         }
-    })
+    });
 
-    const data = await response.json();
+    const project:projectProps = await response.json();
 
-    console.log(data);
+    const response = await fetch(`http://localhost:3000/api/documentation?id=${projectId}` , {
+        method : 'GET',
+        headers: {
+            'Cache-control' : 'no-cache, no-store, must-revalidate',
+            'Pragma' : 'no-cache',
+            'Expires' : '0'
+        }
+    });
 
+    const documentation:documentationProps = await response.json();
 
+    const response = await fetch(`http://localhost:3000/api/outil?id=${projectId}` , {
+        method : 'GET',
+        headers: {
+            'Cache-control' : 'no-cache, no-store, must-revalidate',
+            'Pragma' : 'no-cache',
+            'Expires' : '0'
+        }
+    });
+
+    const outil = await response.json();
 
     // const {outils, project, documentation} = data.map((item : {outils:any[], project:projectProps, documentation:documentationProps[]}) => ({
     //     outils : item.outils,
@@ -52,10 +70,10 @@ export default async function Pageproject({ params } : {params : { projectId : s
     //     documentation : item.documentation
     // }));
 
-    // return (
-    //     <div>
-    //         <Entete project={project} outils={outils} documentation={documentation}/>
-    //         <Contante documentation={documentation} />
-    //     </div>
-    // );
+    return (
+        <div>
+            <Entete project={project} outils={outil} documentation={documentation}/>
+            <Contante documentation={documentation} />
+        </div>
+    );
 }
