@@ -35,7 +35,7 @@ export default function Titre({project, outils}:{project:projectProps,outils:any
                     <div className="p-4">&emsp;{project.presentation}</div>
                     { project.repositories != null ?(
                         <div>Repositories :&nbsp;
-                            <a href={project.repositories} className="text-blue-500 hover:text-blue-600 hover:underline underline-offset-0" target="_blank">
+                            <a href={project.repositories} className="text-blue-500 hover:text-blue-600 hover:underline underline-offset-1" target="_blank">
                                 {project.repositories}
                             </a>
                         </div>

@@ -9,14 +9,13 @@ export async function GET(request: Request, response: Response){
 
     const projectId = url.searchParams.get('id');
 
-    // Récupérer le projet depuis supabase
+    // Récupérer la outil depuis supabase
     const { data, error } = await supabase
-        .from('projets')
-        .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
-        .eq("id", projectId);
+        .from('outils')
+        .select('id, id_projet, outil:outil ( name )');
 
     if (error) console.error(error);
     else {
-        return Response.json(data[0]);
+        return Response.json(data);
     };
 }

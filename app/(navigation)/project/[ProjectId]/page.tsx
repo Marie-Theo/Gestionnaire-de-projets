@@ -31,7 +31,40 @@ export default async function Pageproject({ params } : {params : { projectId : s
 
     const { projectId } = await params;
 
-    const response = await fetch(`http://localhost:3000/api/project?id=${projectId}` , {
+    // const responseProject = await fetch(`http://localhost:3000/api/projects/project?id=${projectId}` , {
+    //     method : 'GET',
+    //     headers: {
+    //         'Cache-control' : 'no-cache, no-store, must-revalidate',
+    //         'Pragma' : 'no-cache',
+    //         'Expires' : '0'
+    //     }
+    // });
+
+    // const project:projectProps = await responseProject.json();
+
+    // const responseDocumentation = await fetch(`http://localhost:3000/api/projects/documentation?id=${projectId}` , {
+    //     method : 'GET',
+    //     headers: {
+    //         'Cache-control' : 'no-cache, no-store, must-revalidate',
+    //         'Pragma' : 'no-cache',
+    //         'Expires' : '0'
+    //     }
+    // });
+
+    // const documentation:documentationProps[] = await responseDocumentation.json();
+
+    // const responseOutil = await fetch(`http://localhost:3000/api/projects/outil?id=${projectId}` , {
+    //     method : 'GET',
+    //     headers: {
+    //         'Cache-control' : 'no-cache, no-store, must-revalidate',
+    //         'Pragma' : 'no-cache',
+    //         'Expires' : '0'
+    //     }
+    // });
+
+    // const outil = await responseOutil.json();
+
+    const response = await fetch(`http://localhost:3000/api/projects/id=${projectId}` , {
         method : 'GET',
         headers: {
             'Cache-control' : 'no-cache, no-store, must-revalidate',
@@ -40,40 +73,18 @@ export default async function Pageproject({ params } : {params : { projectId : s
         }
     });
 
-    const project:projectProps = await response.json();
+    const data = await response.json();
 
-    const response = await fetch(`http://localhost:3000/api/documentation?id=${projectId}` , {
-        method : 'GET',
-        headers: {
-            'Cache-control' : 'no-cache, no-store, must-revalidate',
-            'Pragma' : 'no-cache',
-            'Expires' : '0'
-        }
-    });
-
-    const documentation:documentationProps = await response.json();
-
-    const response = await fetch(`http://localhost:3000/api/outil?id=${projectId}` , {
-        method : 'GET',
-        headers: {
-            'Cache-control' : 'no-cache, no-store, must-revalidate',
-            'Pragma' : 'no-cache',
-            'Expires' : '0'
-        }
-    });
-
-    const outil = await response.json();
-
-    // const {outils, project, documentation} = data.map((item : {outils:any[], project:projectProps, documentation:documentationProps[]}) => ({
-    //     outils : item.outils,
-    //     project : item.project,
-    //     documentation : item.documentation
-    // }));
+    const {outil, project, documentation} = data.map((item : {outil:any[], project:projectProps, documentation:documentationProps[]}) => ({
+        outil : item.outil,
+        project : item.project,
+        documentation : item.documentation
+    }));
 
     return (
-        <div>
+	    <section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
             <Entete project={project} outils={outil} documentation={documentation}/>
             <Contante documentation={documentation} />
-        </div>
+        </section>
     );
 }
