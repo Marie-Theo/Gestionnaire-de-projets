@@ -9,13 +9,26 @@ export async function GET(request: Request, response: Response){
 
     const projectId = url.searchParams.get('id');
 
-    // Récupérer la outil depuis supabase
-    const { data, error } = await supabase
-        .from('outils')
-        .select('id, id_projet, outil:outil ( name )');
+    if (projectId){
+        // Récupérer la outil depuis supabase
+        const { data, error } = await supabase
+            .from('outils')
+            .select('id, id_projet, outil:outil ( name )')
+            .eq('id_projet', projectId);
 
-    if (error) console.error(error);
-    else {
-        return Response.json(data);
-    };
+        if (error) console.error(error);
+        else {
+            return Response.json(data);
+        };
+    } else {
+        // Récupérer la outil depuis supabase
+        const { data, error } = await supabase
+            .from('outil')
+            .select('id, name');
+
+        if (error) console.error(error);
+        else {
+            return Response.json(data);
+        };
+    }
 }

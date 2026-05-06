@@ -46,7 +46,7 @@ export async function GET(request: Request, response: Response){
             }
         });
 
-        // const project:projectProps = await responseProject.json();
+        const project:projectProps = await responseProject.json();
 
         const responseDocumentation = await fetch(`http://localhost:3000/api/projects/documentation?id=${projectId}` , {
             method : 'GET',
@@ -57,7 +57,7 @@ export async function GET(request: Request, response: Response){
             }
         });
 
-        // const documentation:documentationProps[] = await responseDocumentation.json();
+        const documentation:documentationProps[] = await responseDocumentation.json();
 
         const responseOutil = await fetch(`http://localhost:3000/api/projects/outil?id=${projectId}` , {
             method : 'GET',
@@ -68,8 +68,8 @@ export async function GET(request: Request, response: Response){
             }
         });
 
-        // const outil = await responseOutil.json();
+        const outil = await responseOutil.json();
 
-        return Response.json({responseProject,responseDocumentation,responseOutil});
+        return Response.json({project,documentation,outil});
     }
 }
