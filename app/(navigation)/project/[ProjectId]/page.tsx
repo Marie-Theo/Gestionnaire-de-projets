@@ -1,6 +1,14 @@
 import Entete from "@/components/page project/entete";
 import Contante from "@/components/page project/contenu";
 
+interface OutilsProps {
+    id: number;
+    id_projet: number;
+    outil: {
+        name: string;
+    }[];
+}
+
 interface documentationProps {
     id:number;
     id_categorie:{
@@ -40,7 +48,7 @@ export default async function Pageproject({ params } : {params : { projectId : s
         }
     });
 
-    const {project, documentation, outil} = await response.json();
+    const {project, documentation, outil} : {project:projectProps, documentation:documentationProps[], outil:OutilsProps[]} = await response.json();
 
     return (
 	    <section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
