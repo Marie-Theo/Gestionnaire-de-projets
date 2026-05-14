@@ -1,4 +1,4 @@
-import ListingProjet from "@/components/page projets/listingProjet";  
+import ListingProjet from "@/components/page projets/listingProject";  
 import Entete from "@/components/page compte/entete";
 import { tools } from "@/components/tools";
 

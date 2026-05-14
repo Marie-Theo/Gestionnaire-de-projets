@@ -2,7 +2,7 @@
 
 import getProjet from '@/hooks/variable_env';
 import Menu from '@/components/Menu';
-import Index from '@/components/page projets/index';
+// import Index from '@/components/page projets/index';
 // import Article from '@/components/page projet/article';
 import FormConnexion from '@/components/page connexion/Connexion';
 import Compte from '@/components/page compte/Compte';
@@ -14,11 +14,11 @@ export default function Home() {
 
 	return (
 	<section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
-		{page === "projets" ? (
+		{/* page === "projets" ? (
 			<Index props={{projets, outil, outils, etat, users, lastProjets, setPage, user, setLastProjets, setArticle, setDocumentation}} />
-		// ) : page === "projet" ? (
-		// 	<Article props={{projets, outil, outils, etat, users, user, lastProjets, setPage, article, setArticle, documentation }} />
-		) : page === "compte" ? (
+		 ) : page === "projet" ? (
+		 	<Article props={{projets, outil, outils, etat, users, user, lastProjets, setPage, article, setArticle, documentation }} />
+		) : */}{page === "compte" ? (
 			<Compte props={{ projetUser, setProjetUser, outils, user, setPage, lien, setLastProjets, setArticle, setDocumentation}} />
 		) : page === "Connexion" ? (
 			<FormConnexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setArticle, setCategorie }} />

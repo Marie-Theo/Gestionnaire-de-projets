@@ -71,5 +71,19 @@ export async function GET(request: Request, response: Response){
         const outil = await responseOutil.json();
 
         return Response.json({project,documentation,outil});
+    } else {
+        
+        const responseProject = await fetch(`http://localhost:3000/api/projects/project` , {
+            method : 'GET',
+            headers: {
+                'Cache-control' : 'no-cache, no-store, must-revalidate',
+                'Pragma' : 'no-cache',
+                'Expires' : '0'
+            }
+        });
+
+        const project:projectProps = await responseProject.json();
+
+        return Response.json({project});
     }
 }

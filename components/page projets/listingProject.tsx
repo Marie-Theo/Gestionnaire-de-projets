@@ -1,4 +1,4 @@
-import Projet from '@/components/page projets/projet';
+import Projet from '@/components/page projects/projet';
 
 interface projetProps {
     id: number;
@@ -23,17 +23,16 @@ interface OutilsProps {
     }[];
 }
 
-export default function ListingProjet({props}: {props:{projets: projetProps[], outils: OutilsProps[],title: string, setPage: (page: string) => void, setLastProjets: (lastProjets: any[]) => void, setArticle: (article: projetProps) => void,user:any, setDocumentation: (documentation: any[]) => void}}) {
-    const { projets, outils, title, setPage, user, setLastProjets, setArticle, setDocumentation } = props;
+export default function ListingProjet({projects, outils,title}: {projects: projetProps[], outils: OutilsProps[],title: string}) {
 
-    return projets.length > 0 ? (
+    return projects.length > 0 ? (
         <section>
             {title?(
                 <h2 className='font-bold text-2xl pb-4 pt-5'>{title}</h2>
                 ): null}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {projets.map((projet) => (
-                    <Projet key={projet.id} props={{projet,outils,setPage, user, setLastProjets, setArticle, setDocumentation}} />
+                {projects.map((projects) => (
+                    <Projet key={projects.id} projects={projects} outils={outils} />
                 ))}
             </div>
         </section>
