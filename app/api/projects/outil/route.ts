@@ -28,7 +28,7 @@ export async function GET(request: Request, response: Response){
 
         if (error) console.error(error);
         else {
-            return Response.json(data);
+            return Response.json([data]);
         };
     }
 }

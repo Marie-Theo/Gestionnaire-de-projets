@@ -84,6 +84,6 @@ export async function GET(request: Request, response: Response){
 
         const project:projectProps = await responseProject.json();
 
-        return Response.json({project});
+        return Response.json([{project}]);
     }
 }

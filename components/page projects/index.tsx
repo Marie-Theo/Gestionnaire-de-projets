@@ -1,5 +1,5 @@
-import ListingProjet from '@/components/page projets/listingProject';
-import Entete from '@/components/page projets/entete';
+import ListingProjet from '@/components/page projects/listingProject';
+import Entete from '@/components/page projects/entete';
 
 interface projetProps {
     id: number;

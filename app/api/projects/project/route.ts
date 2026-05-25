@@ -11,6 +11,16 @@ export async function GET(request: Request, response: Response){
 
     if (projectId) {
         
+        const responseProject = await fetch(`http://localhost:3000/api/projects/project/updateLastSeen?id=${projectId}` , {
+            method : 'GET',
+            headers: {
+                'Cache-control' : 'no-cache, no-store, must-revalidate',
+                'Pragma' : 'no-cache',
+                'Expires' : '0'
+            }
+        });
+
+
         // Récupérer le projet n° projectId depuis supabase
         const { data, error } = await supabase
             .from('projets')

@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { tools } from "@/components/tools";
-import BadgesOutils from "@/components/page projets/components/badgesOutils";
+import BadgesOutils from "@/components/page projects/components/badgesOutils";
 
 interface projectProps {
     id: number;

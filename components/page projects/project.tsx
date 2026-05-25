@@ -2,10 +2,6 @@ import { Card, CardHeader, CardAction, CardTitle, CardDescription, CardFooter } 
 import { Badge } from "@/components/ui/badge";
 import BadgesOutils from "./components/badgesOutils";
 import { tools } from "@/components/tools";
-import updateLastSeen from "@/components/requet bdd/updateLastSeen";
-import fetchLastSeenProject from "@/hooks/fetch/fetchLastSeenProject";
-import fetchArticle from "@/hooks/fetch/fetchArticle";
-import fetchDocumentation from "@/hooks/fetch/fetchDocumentation";
 
 interface projectProps {
     id: number;
@@ -43,15 +39,8 @@ export default function Project({project, outils, user}: {project: projectProps,
 
     const id_project = project.id;
 
-    function clickPorjet(){
-        updateLastSeen(project.id);
-        fetchLastSeenProject(user.id, setLastProjects);
-        fetchArticle(project.id, setArticle);
-        fetchDocumentation(project.id, setDocumentation);
-    }
-
     return (
-        <Card className="pt-4 mb-4 relative pb-17 gap- hover:shadow-lg transition-shadow duration-300 lg:scale-100 hover:lg:scale-[100.5%] hover:cursor-pointer" onClick={() => {clickPorjet()}}>
+        <Card className="pt-4 mb-4 relative pb-17 gap- hover:shadow-lg transition-shadow duration-300 lg:scale-100 hover:lg:scale-[100.5%] hover:cursor-pointer">
             <CardHeader>
                 <CardAction>
                     <Badge variant="outline" className={tools.defineBadgecolor(project.etat.couleur)}>{project.etat.name}</Badge> 
