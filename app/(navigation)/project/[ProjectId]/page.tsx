@@ -51,9 +51,9 @@ export default async function Pageproject({ params } : {params : { projectId : s
     const {project, documentation, outil} : {project:projectProps, documentation:documentationProps[], outil:OutilsProps[]} = await response.json();
 
     return (
-	    <section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
+	    <div>
             <Entete project={project} outils={outil} documentation={documentation}/>
             <Contante documentation={documentation} />
-        </section>
+        </div>
     );
 }
