@@ -13,34 +13,24 @@ export async function GET(request: Request, response: Response){
 
     if (Pseudo && MotDePasse) {
         
-        async function fetchUser(Pseudo: string) {
-            const { data, error } = await supabase
-            .from('users')
-            .select(` id, name, mdp, theme, presentation, created_at `)
-            .eq('pseudo', Pseudo)
-            .limit(1);
-            if (error) console.error(error);
-            else return (data[0] !== undefined ? data[0] : { id: 0, name: '', theme: '', created_at: '', mdp: '' });
-        }
-        
         let MDP = await sha256(MotDePasse);
 
-        fetchUser(Pseudo).then((data: any) => {
-            if (data.id == 0){
-                return Response.json(false);
-            } else if (data.mdp !== MDP){
-                return Response.json(false);
-            } else {
-                // setUser(data);
-                // fetchProjet(data.id, setProjets);
-                // fetchLastSeenProjet(data.id, setLastProjets);
-                // fetchProjetUser(data.id, setProjetUser);
-                // fetchLien(data.id,setLien);        
-                // fetchCategorie(setCategorie);
-                // setPage('compte');
-                return Response.json(true);
-            }
-            return Response.json(false);
-        });
+        const { data, error } = await supabase
+        .from('users')
+        .select(` id, name, mdp, theme, presentation, created_at `)
+        .eq('pseudo', Pseudo)
+        .limit(1);
+        if (error) {
+            return Response.json([false,0,true]);
+        }
+
+        if (data[0] === undefined){
+            return Response.json([false,0,false]);
+        } else if (data[0]['mdp'] !== MDP){
+            return Response.json([false,0,false]);
+        } else {
+            return Response.json([true,data[0]['id'],false]);
+        }
+        
     }
 }
