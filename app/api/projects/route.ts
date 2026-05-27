@@ -34,6 +34,7 @@ export async function GET(request: Request, response: Response){
     const url = new URL(request.url);
 
     const projectId = url.searchParams.get('id');
+    const id_user = url.searchParams.get('id_user');
 
     if (projectId) {
         
@@ -71,7 +72,21 @@ export async function GET(request: Request, response: Response){
         const outil = await responseOutil.json();
 
         return Response.json({project,documentation,outil});
-    } else {
+    } else if (id_user){
+        
+        const responseProject = await fetch(`http://localhost:3000/api/projects/project?id_user=${id_user}` , {
+            method : 'GET',
+            headers: {
+                'Cache-control' : 'no-cache, no-store, must-revalidate',
+                'Pragma' : 'no-cache',
+                'Expires' : '0'
+            }
+        });
+
+        const project:projectProps = await responseProject.json();
+
+        return Response.json(project);
+    }else { 
         
         const responseProject = await fetch(`http://localhost:3000/api/projects/project` , {
             method : 'GET',
@@ -84,6 +99,6 @@ export async function GET(request: Request, response: Response){
 
         const project:projectProps = await responseProject.json();
 
-        return Response.json([{project}]);
+        return Response.json(project);
     }
 }

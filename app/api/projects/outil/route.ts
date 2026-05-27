@@ -24,7 +24,7 @@ export async function GET(request: Request, response: Response){
         // Récupérer la outil depuis supabase
         const { data, error } = await supabase
             .from('outil')
-            .select('id, name');
+            .select('id, id_projet, outil:outil ( name )');
 
         if (error) console.error(error);
         else {

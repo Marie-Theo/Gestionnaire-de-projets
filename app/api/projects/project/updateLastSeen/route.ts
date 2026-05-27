@@ -7,9 +7,9 @@ import { NextRequest, NextResponse } from "next/server";
   export async function PATCH(request: Request, response: Response){
   
       const url = new URL(request.url);
-  
+
       const projectId = url.searchParams.get('id');
-  
+
       if (projectId) {
         supabase
         .from('projets')

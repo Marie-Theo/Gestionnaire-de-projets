@@ -1,37 +1,24 @@
-"use server"
+"use client"
 
-import Entete from '@/components/page projects/entete';
+// import Entete from '@/components/page projects/entete';
+import listingProjects from '@/hooks/listingProjets';
 import ListingProjet from '@/components/page projects/listingProject';
 
-export default async function Pageproject() {
+export default function Projects() {
 
-    const responseOutils = await fetch(`http://localhost:3000/api/projects/outil` , {
-        method : 'GET',
-        headers: {
-            'Cache-control' : 'no-cache, no-store, must-revalidate',
-            'Pragma' : 'no-cache',
-            'Expires' : '0'
-        }
-    });
+    if (localStorage.getItem("id") === undefined) {
+        localStorage.setItem("id", '0');
+    }
 
-    const outils = await responseOutils.json();
+    const id_user = localStorage.getItem("id");
 
-    const response = await fetch(`http://localhost:3000/api/projects` , {
-        method : 'GET',
-        headers: {
-            'Cache-control' : 'no-cache, no-store, must-revalidate',
-            'Pragma' : 'no-cache',
-            'Expires' : '0'
-        }
-    });
-
-    const projects = await response.json();
+    const { outils, projects, projectsLastSeen} = listingProjects(id_user);
     
     return (
         <section id="projects" >
-            {/* <Entete props={{projets, outil, outils, etat, users, setPage, setArticle, setDocumentation}} />
-            <ListingProjet props={{projets:lastProjets, outils, title:"Projets récemment vus", setPage, user, setLastProjets, setArticle, setDocumentation}} /> */}
-            <ListingProjet projects={projects} outils={outils} title={"Tous les projets"}/>
+            {/* <Entete props={{projets, outil, outils, etat, users, setPage, setArticle, setDocumentation}} /> */}
+            <ListingProjet projects={projectsLastSeen} outils={outils} title="Projets récemment vus"/>
+            <ListingProjet projects={projects} outils={outils} title="Tous les projets"/>
         </section>
     );
 }
