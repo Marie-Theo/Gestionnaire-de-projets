@@ -12,9 +12,10 @@ export default function Home() {
 
 	const { projets, setProjets, lastProjets, setLastProjets, etat, outil, outils, users, user, setUser, page, setPage, projetUser, setProjetUser, lien, setLien, article, setArticle, documentation, setDocumentation, categorie, setCategorie, nouveauArticle, setNouveauArticle, nouvelDocumentation, setNouvelDocumentation, nouveauOutils, setNouveauOutils } = getProjet();
 
-	if (localStorage.getItem("id") == null) {
-	localStorage.setItem("id", '0');
+	if (localStorage.getItem("id") === undefined) {
+		localStorage.setItem("id", '0');
 	}
+    console.log(localStorage.getItem("id"));
 
 	return (
 	<section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
