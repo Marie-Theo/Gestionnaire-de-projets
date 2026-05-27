@@ -13,6 +13,12 @@ export default function FormConnexion() {
     const pseudoRef = useRef<any>(null);
     const mdpRef = useRef<any>(null);
 
+	if (localStorage.getItem("id") == null) {
+	    localStorage.setItem("id", '0');
+	} else if (localStorage.getItem("id") >= 1){ // si l'user est déjà authentifié le rediriger vers /
+        window.location.href = "/";
+    }
+
     if (!erreur || !incorect){
         var [erreur, setErreur]  = useState(false);
         var [incorect, setIncorect]  = useState(false);
@@ -37,17 +43,16 @@ export default function FormConnexion() {
 
             setErreur(false);
             setIncorect(false);
-            if (User[0]){ // connexion reussi
-                console.log('id :'+User[1]);
+            if (User[0]){           // connexion reussi
+                const id = User[1];
 
-            } else if (User[2]){ // une erreur a étais trouvé
+                localStorage.setItem("id", id);
+                console.log(localStorage.getItem("id"));
+                window.location.href = "/";
+            } else if (User[2]){    // une erreur a étais trouvé
                 setErreur(true);
-                console.log(erreur);
-                console.log(incorect);
-            } else { // les  informations sont incorect
+            } else {                // les  informations sont incorect
                 setIncorect(true);
-                console.log(erreur);
-                console.log(incorect);
             }
         }
     }

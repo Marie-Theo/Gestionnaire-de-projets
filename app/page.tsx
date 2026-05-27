@@ -12,6 +12,10 @@ export default function Home() {
 
 	const { projets, setProjets, lastProjets, setLastProjets, etat, outil, outils, users, user, setUser, page, setPage, projetUser, setProjetUser, lien, setLien, article, setArticle, documentation, setDocumentation, categorie, setCategorie, nouveauArticle, setNouveauArticle, nouvelDocumentation, setNouvelDocumentation, nouveauOutils, setNouveauOutils } = getProjet();
 
+	if (localStorage.getItem("id") == null) {
+	localStorage.setItem("id", '0');
+	}
+
 	return (
 	<section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
 		{/* page === "projets" ? (
@@ -20,8 +24,8 @@ export default function Home() {
 		 	<Article props={{projets, outil, outils, etat, users, user, lastProjets, setPage, article, setArticle, documentation }} />
 		) : */}{page === "compte" ? (
 			<Compte props={{ projetUser, setProjetUser, outils, user, setPage, lien, setLastProjets, setArticle, setDocumentation}} />
-		) : page === "Connexion" ? (
-			<FormConnexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setArticle, setCategorie }} />
+		// ) : page === "Connexion" ? (
+		// 	<FormConnexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setArticle, setCategorie }} />
 		) : page === "Nouveaux" ? (
 			<Nouveau props={{categorie,setCategorie,nouveauArticle, setNouveauArticle,nouvelDocumentation, setNouvelDocumentation,outil,etat,nouveauOutils, setNouveauOutils, categorie, setCategorie}}/>
 		) : null}
