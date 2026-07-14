@@ -10,7 +10,9 @@ export default function Projects() {
         localStorage.setItem("id", '0');
     }
 
-    const id_user = localStorage.getItem("id");
+    const id_user = localStorage.getItem("id") ? Number(localStorage.getItem("id")) : 0;
+
+    console.log(id_user);
 
     const { outils, projects, projectsLastSeen} = listingProjects(id_user);
     

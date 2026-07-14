@@ -44,7 +44,7 @@ interface lienProps {
     url:string;
 }
 
-export default function FormConnexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: projetProps[]) => void, setLastProjets: (lastProjets: projetProps[]) => void, setProjetUser: (projetUser: lienProps[]) => void, setLien: (lien: lienProps[]) => void, setCategorie: (categorie: any[]) => void}}) {
+export default function Connexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: projetProps[]) => void, setLastProjets: (lastProjets: projetProps[]) => void, setProjetUser: (projetUser: lienProps[]) => void, setLien: (lien: lienProps[]) => void, setCategorie: (categorie: any[]) => void}}) {
 
     const { user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setCategorie } = props;
     const [Erreur_Formulaire_inscription, setErreur_Formulaire_inscription] = useState<any>('false');

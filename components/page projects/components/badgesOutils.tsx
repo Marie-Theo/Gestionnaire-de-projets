@@ -8,15 +8,13 @@ interface OutilsProps {
     }[];
 }
 
-export default function BadgesOutils({props}: {props:{id_projet: number,outils : OutilsProps[]}}) {
-
-    const { id_projet, outils } = props;
+export default function BadgesOutils({id,outils} : {id: number,outils : OutilsProps[]}) {
 
     return (
-    outils.map((entry: any) => {
-        if (entry.id_projet === id_projet) {
-            return <Badge variant="secondary" key={entry.id}>{entry.outil.name}</Badge>
-        }
-    }));
-    
+        outils.map(element => {
+            if (element.id_projet === id) {
+                return <Badge variant="secondary" key={element.id}>{element.outil.name}</Badge>
+            }
+        })
+    );
 }

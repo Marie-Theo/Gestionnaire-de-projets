@@ -1,10 +1,10 @@
 "use client"
 
 import getProjet from '@/hooks/variable_env';
-import Menu from '@/components/Menu';
+// import Menu from '@/components/Menu';
 // import Index from '@/components/page projets/index';
 // import Article from '@/components/page projet/article';
-import FormConnexion from '@/components/page connexion/Connexion';
+// import Connexion from '@/components/page connexion/Connexion';
 import Compte from '@/components/page compte/Compte';
 import Nouveau from '@/components/page ajout/Nouveau';
 
@@ -15,7 +15,6 @@ export default function Home() {
 	if (localStorage.getItem("id") === undefined) {
 		localStorage.setItem("id", '0');
 	}
-    console.log(localStorage.getItem("id"));
 
 	return (
 	<section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
@@ -26,11 +25,11 @@ export default function Home() {
 		) : */}{page === "compte" ? (
 			<Compte props={{ projetUser, setProjetUser, outils, user, setPage, lien, setLastProjets, setArticle, setDocumentation}} />
 		// ) : page === "Connexion" ? (
-		// 	<FormConnexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setArticle, setCategorie }} />
+		// 	<Connexion props={{user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setArticle, setCategorie }} />
 		) : page === "Nouveaux" ? (
 			<Nouveau props={{categorie,setCategorie,nouveauArticle, setNouveauArticle,nouvelDocumentation, setNouvelDocumentation,outil,etat,nouveauOutils, setNouveauOutils, categorie, setCategorie}}/>
 		) : null}
-		<Menu props={{user, page, setPage}} />
+		{/* <Menu props={{user, page, setPage}} /> */}
 	</section>
 	);
 }

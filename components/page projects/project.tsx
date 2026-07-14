@@ -28,7 +28,7 @@ interface OutilsProps {
 
 export default function Project({project, outils}: {project: projectProps, outils: OutilsProps[]}) {
 
-    const id_project = project.id;
+    const id_project : number = project.id;
 
     return (
         <a href={`project/${id_project}`} className="h-min mb-4">
@@ -42,7 +42,7 @@ export default function Project({project, outils}: {project: projectProps, outil
                 </CardHeader>
                 <CardDescription className="pl-6 pr-5">&emsp;{''+project.presentation}</CardDescription>
                 <CardFooter className="absolute bottom-3 flex flex-wrap gap-1">
-                    <BadgesOutils props={{id_project,outils}} />
+                    <BadgesOutils id={id_project} outils={outils[0]} />
                 </CardFooter>
             </Card>
         </a>

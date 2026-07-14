@@ -48,11 +48,11 @@ export default async function Pageproject({ params } : {params : { projectId : s
         }
     });
 
-    const {project, documentation, outil} : {project:projectProps, documentation:documentationProps[], outil:OutilsProps[]} = await response.json();
+    const {project, documentation, outil} : {project:projectProps[], documentation:documentationProps[], outil:OutilsProps[]} = await response.json();
 
     return (
 	    <div>
-            <Entete project={project} outils={outil} documentation={documentation}/>
+            <Entete project={project[0]} outils={outil} documentation={documentation}/>
             <Contante documentation={documentation} />
         </div>
     );

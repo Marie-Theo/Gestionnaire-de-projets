@@ -23,7 +23,7 @@ interface OutilsProps {
     }[];
 }
 
-export default function ListingProjet({projects, outils,title}: {projects: projetProps[], outils: OutilsProps[],title: string}) {
+export default function ListingProjet({projects, outils,title} : {projects: projetProps[], outils: OutilsProps[],title: string}) {
 
     return (
         projects.length > 0 ? (

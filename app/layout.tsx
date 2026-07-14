@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Menu from '@/components/Menu';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({
       >
 	      <section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
           {children}
+          <Menu/>
         </section>
       </body>
     </html>

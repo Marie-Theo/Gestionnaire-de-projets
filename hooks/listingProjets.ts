@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from 'react';
 
-export default function listingProjects(id_user){
+export default function listingProjects(id_user : number){
 
     const [projects, setprojects] = useState([]);
     const [projectsLastSeen, setProjectsLastSeen] = useState([]);

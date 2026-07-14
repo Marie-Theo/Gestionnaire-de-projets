@@ -10,7 +10,7 @@ export async function GET(request: Request, response: Response){
     const projectId = url.searchParams.get('id');
 
     if (projectId){
-        // Récupérer la outil depuis supabase
+        // Récupérer les outil d'un projet
         const { data, error } = await supabase
             .from('outils')
             .select('id, id_projet, outil:outil ( name )')
@@ -21,9 +21,9 @@ export async function GET(request: Request, response: Response){
             return Response.json(data);
         };
     } else {
-        // Récupérer la outil depuis supabase
+        // Récupérer tous les outils util
         const { data, error } = await supabase
-            .from('outil')
+            .from('outils')
             .select('id, id_projet, outil:outil ( name )');
 
         if (error) console.error(error);
