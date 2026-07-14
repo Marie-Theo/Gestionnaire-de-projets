@@ -82,6 +82,29 @@ export default function CreateNewProject() {
     }
     }, []);
 
+    
+    useEffect(() => {
+        async function fetchCategorie() {
+        setCategorie([{ id:0, text:'', ordre:0, style:0 }]);    
+        
+        const { data, error } = await supabase
+            .from('categorie')
+            .select('id, text, ordre, style')
+            .order('ordre', { ascending: true });
+        console.log("fetching Categorie...");
+
+        if (error) console.error(error);
+        else {
+            console.log(data);
+            setCategorie(data || []);
+        };
+        }
+
+        if (categorie.length === 0) {
+            fetchCategorie();
+        }
+    }, []);
+
     return {
         etat,
         outil,

@@ -10,6 +10,10 @@ interface OutilsProps {
 
 export default function BadgesOutils({id,outils} : {id: number,outils : OutilsProps[]}) {
 
+    if (!outils){
+        return;
+    }
+
     return (
         outils.map(element => {
             if (element.id_projet === id) {

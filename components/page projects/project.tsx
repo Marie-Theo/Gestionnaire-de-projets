@@ -31,7 +31,7 @@ export default function Project({project, outils}: {project: projectProps, outil
     const id_project : number = project.id;
 
     return (
-        <a href={`project/${id_project}`} className="h-min mb-4">
+        <a href={`/project/${id_project}`} className="h-min mb-4">
             <Card className="pt-4 relative pb-17 gap- hover:shadow-lg transition-shadow duration-300 lg:scale-100 hover:lg:scale-[100.5%] hover:cursor-pointer">
                 <CardHeader>
                     <CardAction>

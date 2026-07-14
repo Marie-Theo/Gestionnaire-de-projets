@@ -1,11 +1,11 @@
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from 'react';
 
-export default function listingProjects(id_user : number){
+export default function UserInfo(id_user : number){
 
-    const [projects, setprojects] = useState([]);
-    const [projectsLastSeen, setProjectsLastSeen] = useState([]);
     const [outils, setOutils] = useState([]);
+    const [projects, setprojects] = useState([]);
+    const [user, setUser] = useState([]);
 
         useEffect(() => {
             async function getoutils() {
@@ -29,7 +29,7 @@ export default function listingProjects(id_user : number){
 
         useEffect(() => {
             async function getproject() {
-                const responseproject = await fetch(`http://localhost:3000/api/projects?id_user=${id_user}` , {
+                const responseproject = await fetch(`http://localhost:3000/api/user/project?id_user=${id_user}` , {
                     method : 'GET',
                     headers: {
                         'Cache-control' : 'no-cache, no-store, must-revalidate',
@@ -46,10 +46,10 @@ export default function listingProjects(id_user : number){
                 console.log(projects);
             }
         }, [projects]);
-            
+
         useEffect(() => {
-            async function getprojectsLastSeen() {
-                const responseLastSeen = await fetch(`http://localhost:3000/api/projects/project/lastseen?id_user=${id_user}` , {
+            async function getUser() {
+                const responseUser = await fetch(`http://localhost:3000/api/user?id=${id_user}` , {
                     method : 'GET',
                     headers: {
                         'Cache-control' : 'no-cache, no-store, must-revalidate',
@@ -58,15 +58,14 @@ export default function listingProjects(id_user : number){
                     }
                 });
 
-                setProjectsLastSeen(await responseLastSeen.json());
+                setUser(await responseUser.json());
             }
-            if (projectsLastSeen.length == 0){
-                console.log('fetch projectsLastSeen');
-                getprojectsLastSeen();
-                console.log(projectsLastSeen);
+            if (user.length == 0){
+                console.log('fetch user');
+                getUser();
+                console.log(user);
             }
-            
-        }, [projectsLastSeen]);
+        }, [user]);
 
-    return {outils, projects, projectsLastSeen};
+    return {outils, projects, user};
 }
