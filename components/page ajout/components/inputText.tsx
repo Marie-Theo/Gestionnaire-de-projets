@@ -20,23 +20,25 @@ export default function inputText({nouvelDocumentation, index, setNouvelDocument
                 placeholder="..."
                 defaultValue={nouvelDocumentation[index].text}
             />
-            <div className="flex flex-col gap-2">
-                <Button
-                    variant="destructive"
-                    className="max-h-8 w-10 p-2"
-                    onClick={() => {tools.removeArray(nouvelDocumentation, setNouvelDocumentation, index);
-                }}>X</Button>
-                <Button
-                    variant="outline"
-                    className="max-h-8 max-w-16 p-2"
-                    onClick={() => {tools.changeOrderArray(nouvelDocumentation, setNouvelDocumentation, index);
-                }}>▲</Button>
-                <Button
-                    variant="outline"
-                    className="max-h-8 max-w-16 p-2"
-                    onClick={() => {tools.changeOrderArray(nouvelDocumentation, setNouvelDocumentation, index + 1);
-                }}>▼</Button>
-            </div>
+            { nouvelDocumentation.length > 1 ? (
+                <div className="flex flex-col gap-2">
+                    <Button
+                        variant="destructive"
+                        className="max-h-8 w-10 p-2"
+                        onClick={() => {tools.removeArray(nouvelDocumentation, setNouvelDocumentation, index);
+                    }}>X</Button>
+                    <Button
+                        variant="outline"
+                        className="max-h-8 max-w-16 p-2"
+                        onClick={() => {tools.changeOrderArray(nouvelDocumentation, setNouvelDocumentation, index);
+                    }}>▲</Button>
+                    <Button
+                        variant="outline"
+                        className="max-h-8 max-w-16 p-2"
+                        onClick={() => {tools.changeOrderArray(nouvelDocumentation, setNouvelDocumentation, index + 1);
+                    }}>▼</Button>
+                </div>
+            ) : null }
         </div>
     );
 }

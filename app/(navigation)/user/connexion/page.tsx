@@ -4,6 +4,14 @@ import { AlertCircleIcon, InfoIcon } from "lucide-react"
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRef, useState } from "react";
@@ -27,6 +35,9 @@ export default function FormConnexion() {
     async function valide(){
         var pseudo = pseudoRef.current.value;
         var mdp = mdpRef.current.value;
+
+        setErreur(false);
+        setIncorect(false);
 
         if (pseudo !="" && mdp.length != 0){
 
@@ -58,13 +69,36 @@ export default function FormConnexion() {
     }
 
     return (
-        <div className="md:mt-md md:max-w-md center mx-auto mt-25 flex flex-col">
-            <h1 className="text-3xl center">Connexion :</h1>
-            <Label className='mt-3' htmlFor="pseudo">Pseudo</Label>
-            <Input type="text" id="pseudo" ref={pseudoRef}/>
-            <Label className='mt-3' htmlFor="password">Mot de passe</Label>
-            <Input type="password" placeholder="••••••••" id="password" ref={mdpRef}/>
-            <Button type="submit" className='mx-auto w-[100%] mt-3' onClick={valide}>Connexion</Button>
+        <div className="md:mt-md md:max-w-md mx-auto mt-25 flex flex-col items-center gap-2">
+            <Card className="w-full max-w-sm pb-0">
+                <CardHeader>
+                    <CardTitle>Login to your account</CardTitle>
+                    <CardDescription>
+                    Enter your Pseudo below to login to your account
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <form>
+                    <div className="flex flex-col gap-6">
+                        <div className="grid gap-2">
+                            <Label htmlFor="pseudo">Pseudo</Label>
+                            <Input type="text" id="pseudo" ref={pseudoRef}/>
+                        </div>
+                        <div className="grid gap-2">
+                        <div className="flex items-center">
+                            <Label htmlFor="password">Password</Label>
+                        </div>
+                        <Input id="password" type="password" placeholder="••••••••" ref={mdpRef} required />
+                        </div>
+                    </div>
+                    </form>
+                </CardContent>
+                <CardFooter className="bg-muted/100 p-4 rounded-b-xl border-t-1">
+                    <Button type="submit" className='mx-auto w-full' onClick={valide}>
+                        Login
+                    </Button>
+                </CardFooter>
+            </Card>
 
             {/* alert d'information renseigner incorect*/}
             <Alert variant="destructive" className={incorect === true ? "my-2 text-xs":"hidden" } >
