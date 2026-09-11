@@ -5,7 +5,7 @@ import { Spinner } from "@/components/ui/spinner"
 
 export default function Disconnexion() {
 
-    localStorage.setItem("id", '0');
+    sessionStorage.setItem("id", '0');
     window.location.href = "/";
 
     return (

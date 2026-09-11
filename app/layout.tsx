@@ -24,6 +24,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -36,8 +37,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
           <section className="pl-[10%] pr-[10%] pt-10 pb-[15%] xs:pb-[12%] lg:pb-[9%] xl:pb-[6%]">
-            {children}
             <Menu/>
+            {children}
           </section>
         </ThemeProvider>
       </body>

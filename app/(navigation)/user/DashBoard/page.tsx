@@ -5,11 +5,11 @@ import ListingProjet from '@/components/page projects/listingProject';
 
 export default function DashBoard() {
 
-    if (localStorage.getItem("id") === undefined) {
-        localStorage.setItem("id", '0');
+    if (sessionStorage.getItem("id") === "null") {
+        sessionStorage.setItem("id", '0');
     }
 
-    const id_user = localStorage.getItem("id") ? Number(localStorage.getItem("id")) : 0;
+    const id_user = sessionStorage.getItem("id") ? Number(sessionStorage.getItem("id")) : 0;
 
     const { outils, projects, user } = UserInfo(id_user);
 
