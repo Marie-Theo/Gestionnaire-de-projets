@@ -4,25 +4,14 @@ import { Card } from "@/components/ui/card";
 import { ModeToggle } from "@/components/mode-toggle"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-import getNewToken from '@/hooks/token/getNewToken';
 import React, { useState, useEffect } from "react";
 
 export default function Menu() {
-
-    const [token, setToken] = useState(() => {
-        return sessionStorage.getItem("token") || "null";
-    });
     
     const [id_user, setIdUser] = useState(() => {
-        return sessionStorage.getItem("id") || "null";
+        return sessionStorage.getItem("id") || "0";
     });
 
-    useEffect(() => {
-        if (token === "null") {
-            getNewToken();
-        }
-    }, [token]);
-    
     useEffect(() => {
         if (id_user === "null") {
             sessionStorage.setItem("id", '0');

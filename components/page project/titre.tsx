@@ -40,7 +40,9 @@ export default function Titre({project, outils}:{project:projectProps,outils:Out
                             <Badge variant="outline" className={tools.definePublicBadgeColor(project.public)}>{project.public ? 'Public' : 'Privé'}</Badge>
                         </div>
                     </div>
-                    <div className="p-4">&emsp;{project.presentation}</div>
+                    <div className="p-4">
+                        <span>{project.presentation}</span>
+                    </div>
                     { project.repositories != null ?(
                         <div>Repositories :&nbsp;
                             <a href={project.repositories} className="text-blue-500 hover:text-blue-600 hover:underline underline-offset-1" target="_blank">

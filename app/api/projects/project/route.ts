@@ -1,5 +1,3 @@
-"use server"
-
 import { supabase } from "@/lib/supabaseClient";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,7 +19,7 @@ export async function GET(request: Request, response: Response){
             .from('projets')
             .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
             .or("public.eq."+ true+",id_user.eq."+ id_user)
-            .gte("id", projectId);
+            .eq("id", projectId);
 
         if (error) console.error(error);
         else {
