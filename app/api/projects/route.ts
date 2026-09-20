@@ -34,11 +34,11 @@ export async function GET(request: Request, response: Response){
     const url = new URL(request.url);
 
     const projectId = url.searchParams.get('id');
-    const id_user = url.searchParams.get('id_user');
+    const id_user = url.searchParams.get('id_user') || 0;
 
     if (projectId) {
         
-        const responseProject = await fetch(`http://localhost:3000/api/projects/project?id=${projectId}` , {
+        const responseProject = await fetch(`http://localhost:3000/api/projects/project?id=${projectId}&id_user=${id_user}` , {
             method : 'GET',
             headers: {
                 'Cache-control' : 'no-cache, no-store, must-revalidate',
@@ -49,7 +49,7 @@ export async function GET(request: Request, response: Response){
 
         const project:projectProps = await responseProject.json();
 
-        const responseDocumentation = await fetch(`http://localhost:3000/api/projects/documentation?id=${projectId}` , {
+        const responseDocumentation = await fetch(`http://localhost:3000/api/projects/documentation?id=${projectId}&id_user=${id_user}` , {
             method : 'GET',
             headers: {
                 'Cache-control' : 'no-cache, no-store, must-revalidate',
@@ -60,7 +60,7 @@ export async function GET(request: Request, response: Response){
 
         const documentation:documentationProps[] = await responseDocumentation.json();
 
-        const responseOutil = await fetch(`http://localhost:3000/api/projects/outil?id=${projectId}` , {
+        const responseOutil = await fetch(`http://localhost:3000/api/projects/outil?id=${projectId}&id_user=${id_user}` , {
             method : 'GET',
             headers: {
                 'Cache-control' : 'no-cache, no-store, must-revalidate',
@@ -86,7 +86,7 @@ export async function GET(request: Request, response: Response){
         const project:projectProps = await responseProject.json();
 
         return Response.json(project);
-    }else { 
+    } else { 
         
         const responseProject = await fetch(`http://localhost:3000/api/projects/project` , {
             method : 'GET',

@@ -8,7 +8,7 @@ export async function GET(request: Request, response: Response){
     const url = new URL(request.url);
 
     const projectId = url.searchParams.get('id');
-    const id_user = url.searchParams.get('id_user');
+    const id_user = url.searchParams.get('id_user') || 0;
 
     if (projectId) {
         
@@ -20,13 +20,14 @@ export async function GET(request: Request, response: Response){
         const { data, error } = await supabase
             .from('projets')
             .select('id, created_at, seen_at, title, presentation, repositories, etat ( name, couleur ), id_user, public')
-            .eq("id", projectId);
+            .or("public.eq."+ true+",id_user.eq."+ id_user)
+            .gte("id", projectId);
 
         if (error) console.error(error);
         else {
             return Response.json(data);
         };
-    } else if (id_user) {
+    } else if (id_user != 0) {
 
         // Récupérer le projet depuis supabase
         const { data, error } = await supabase
