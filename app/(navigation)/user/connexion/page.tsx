@@ -21,7 +21,7 @@ export default function FormConnexion() {
     const pseudoRef = useRef<any>(null);
     const mdpRef = useRef<any>(null);
 
-	if (sessionStorage.getItem("id") == "null") {
+	if (sessionStorage.getItem("id") == null) {
 	    sessionStorage.setItem("id", '0');
 	} else if (sessionStorage.getItem("id") !== "0"){ // si l'user est déjà authentifié le rediriger vers /
         window.location.href = "/";
@@ -58,7 +58,6 @@ export default function FormConnexion() {
                 const id = User[1];
 
                 sessionStorage.setItem("id", id);
-                console.log(sessionStorage.getItem("id"));
                 window.location.href = "/";
             } else if (User[2]){    // une erreur a étais trouvé
                 setErreur(true);

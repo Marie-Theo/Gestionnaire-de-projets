@@ -5,7 +5,7 @@ import ListingProjet from '@/components/page projects/listingProject';
 
 export default function DashBoard() {
 
-    if (sessionStorage.getItem("id") === "null") {
+    if (sessionStorage.getItem("id") === null) {
         sessionStorage.setItem("id", '0');
     }
 

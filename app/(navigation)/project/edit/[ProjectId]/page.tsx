@@ -90,13 +90,15 @@ export default function Pageproject({ params }: { params: Promise<{ ProjectId: s
                 }
             });
 
-            setNouveauArticle(await responseEtat.json());
+            setEtat(await responseEtat.json());
         }
 
         if (etat.length === 0) {
             fetchEtat();
+        } else {
+            console.log(etat);
         }
-    }, []);
+    }, [etat]);
 
     useEffect(() => {
         async function fetchOutil() {
@@ -110,13 +112,15 @@ export default function Pageproject({ params }: { params: Promise<{ ProjectId: s
                 }
             });
 
-            setNouveauArticle(await responseOutil.json());
+            setOutil(await responseOutil.json());
         }
 
         if (outil.length === 0) {
             fetchOutil();
+        } else {
+            console.log(outil);
         }
-    }, []);
+    }, [outil]);
 
     useEffect(() => {
         async function fetchCategorie() {
@@ -131,23 +135,23 @@ export default function Pageproject({ params }: { params: Promise<{ ProjectId: s
                 }
             });
 
-            setNouveauArticle(await responseCategorie.json());
+            setCategorie(await responseCategorie.json());
         }
 
         if (categorie.length === 0) {
             fetchCategorie();
+        } else {
+            console.log(categorie);
         }
-    }, []);
+    }, [categorie]);
 
     const [loading, setLoading] = useState(true);
 
-    // 1. Lecture du storage une seule fois, après le montage
     useEffect(() => {
         const stored = sessionStorage.getItem("id");
         setId_user(stored ? Number(stored) : 0);
     }, []);
 
-    // 2. Fetch quand id_user est connu (une seule fois, car id_user ne change plus après)
     useEffect(() => {
         if (id_user === null) return; // on attend d'avoir lu le sessionStorage
         else if (id_user === 0) return;
@@ -194,6 +198,9 @@ export default function Pageproject({ params }: { params: Promise<{ ProjectId: s
             } finally {
                 setLoading(false);
             }
+            console.log(nouvelDocumentation);
+            console.log(nouveauArticle);
+            console.log(nouveauOutils);
         })();
 
         return () => controller.abort();
@@ -201,17 +208,17 @@ export default function Pageproject({ params }: { params: Promise<{ ProjectId: s
 
     if (loading) return <div>Chargement...</div>;
 
-
-    console.log(nouvelDocumentation);
-    console.log(nouveauArticle);
-    console.log(nouveauOutils);
-    console.log(categorie);
-    console.log(etat);
-    console.log(outil);
     
     return (
         <div>
-            <Entete props={nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils,nouvelDocumentation}/>
+            <Entete
+                nouveauArticle={nouveauArticle}
+                setNouveauArticle={setNouveauArticle}
+                outil={outil}
+                etat={etat}
+                nouveauOutils={nouveauOutils}
+                setNouveauOutils={setNouveauOutils}
+                nouvelDocumentation={nouvelDocumentation}/>
             <Contante props={nouvelDocumentation, setNouvelDocumentation, categorie, setCategorie} />
         </div>
     );

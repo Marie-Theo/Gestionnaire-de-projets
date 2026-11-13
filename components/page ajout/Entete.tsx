@@ -12,9 +12,15 @@ interface documentationProps {
     text:string;
 }
 
-export default function Entete({props}:{props:{nouveauArticle:any, setNouveauArticle: (nouveauArticle: any) => void, outil:any, etat:any, nouveauOutils:any[], setNouveauOutils: React.Dispatch<React.SetStateAction<string[]>>,nouvelDocumentation:documentationProps[]}}){
-
-    const {nouveauArticle,setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils, nouvelDocumentation} = props;
+export default function Entete(
+    {nouveauArticle, setNouveauArticle,
+    outil, etat,
+    nouveauOutils, setNouveauOutils,
+    nouvelDocumentation}
+    :{nouveauArticle:any,setNouveauArticle: (nouveauArticle: any) => void,
+    outil:any, etat:any,
+    nouveauOutils:any[], setNouveauOutils: React.Dispatch<React.SetStateAction<string[]>>,
+    nouvelDocumentation:documentationProps[]}){
 
     return (
         <div className="grid grid-cols-3 gap-5 xl:gap-1">
