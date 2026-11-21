@@ -4,30 +4,9 @@ import { Button } from '@/components/ui/button';
 import fetchArticle from "@/hooks/fetch/fetchArticle";
 import fetchDocumentation from "@/hooks/fetch/fetchDocumentation";
 
-interface projetProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-}
+import { documentationProps, projectProps, etatProps, OutilsProps, userProps } from "@/hooks/interface";
 
-interface userProps {
-    id: number;
-    name: string;
-    mdp: string;
-    theme: string;
-    presentation:string;
-    created_at: string;
-}
-export default function Entete({props}: {props:{projets: any[], outil: any[], outils: any[], etat: any[], users: any[], setPage: (page: string) => void, setArticle: (article: projetProps) => void,user:userProps, setDocumentation: (documentation: any[]) => void}}) {
+export default function Entete({props}: {props:{projets: projectProps[], outil: OutilsProps, outils: OutilsProps[], etat: etatProps[], users: userProps[], setPage: (page: string) => void, setArticle: (article: projectProps) => void,user:userProps, setDocumentation: (documentation: documentationProps[]) => void}}) {
     
     const { projets, outil, outils, etat, users, setPage, setArticle, setDocumentation } = props;
 

@@ -2,22 +2,9 @@
 
 import { Input } from "@/components/ui/input";
 
-interface projetProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-};
+import { projectProps } from "@/hooks/interface";
 
-export default function InputRepo({ props }: { props: { nouveauArticle: projetProps} }) {
+export default function InputRepo({ props }: { props: { nouveauArticle: projectProps} }) {
 
     const { nouveauArticle } = props;
 
@@ -27,7 +14,7 @@ export default function InputRepo({ props }: { props: { nouveauArticle: projetPr
     
     return (
         <div className='flex gap-2 items-center'>Repositories&nbsp;:
-            <Input type="url" onChange={(e)=>{inputRepoChangeHandler(e);}} placeholder="https://github.com/Marie-Theo/Gestionnaire-de-projets" defaultValue={nouveauArticle.repositories} />
+            <Input type="url" onChange={(e)=>{inputRepoChangeHandler(e);}} placeholder="https://github.com/Marie-Theo/Gestionnaire-de-projets" defaultValue={nouveauArticle?.repositories} />
         </div>
         );
     }

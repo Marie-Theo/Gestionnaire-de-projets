@@ -1,11 +1,4 @@
-interface userProps {
-    id: number;
-    name: string;
-    mdp: string;
-    theme: string;
-    presentation:string;
-    created_at: string;
-}
+import { userProps } from "@/hooks/interface";
 
 export default function PresentationUser(user:userProps){
 

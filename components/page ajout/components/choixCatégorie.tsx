@@ -5,24 +5,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Combobox,ComboboxContent,ComboboxEmpty,ComboboxItem,ComboboxList,ComboboxInput } from "@/components/ui/combobox";
 
-interface categorieProps {
-    id: number;
-    text: string;
-    ordre: number;
-    style: number;
-}
-
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
-
+import { documentationProps, categorieProps } from "@/hooks/interface";
 
 export default function ChoixCategorie({props}: {props: {nouvelDocumentation: documentationProps[], sectionIndex: number, categorie: categorieProps[],setCategorie: Dispatch<SetStateAction<categorieProps[]>>, setNouvelDocumentation: Dispatch<SetStateAction<documentationProps[]>>}}) {
     const { nouvelDocumentation, sectionIndex, categorie, setCategorie, setNouvelDocumentation } = props

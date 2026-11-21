@@ -2,26 +2,13 @@
 
 import { useState } from "react";
 
-interface projetProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-};
+import { projectProps } from "@/hooks/interface";
 
-export default function Select({ props }: { props: { nouveauArticle: projetProps } }) {
+export default function Select({ props }: { props: { nouveauArticle: projectProps } }) {
 
     const { nouveauArticle } = props;
 
-    const [isPublic, setIsPublic] = useState<boolean>(nouveauArticle.public);
+    const [isPublic, setIsPublic] = useState<boolean>(nouveauArticle?.public);
 
     function selectChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
         const value = e.target.value === "true";
@@ -31,7 +18,7 @@ export default function Select({ props }: { props: { nouveauArticle: projetProps
 
     return (
         <select
-        value={isPublic}
+        value={String(isPublic)}
         onChange={(e)=>{selectChangeHandler(e);}}
         className={
             isPublic

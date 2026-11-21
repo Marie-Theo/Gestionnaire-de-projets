@@ -1,25 +1,17 @@
 import Titre from "@/components/page ajout/Titre";
 import Sommaire from "@/components/page project/sommaire";
+import { documentationProps } from "@/hooks/interface";
 
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
+import { projectProps, etatProps, OutilProps } from "@/hooks/interface";
 
 export default function Entete(
     {nouveauArticle, setNouveauArticle,
     outil, etat,
     nouveauOutils, setNouveauOutils,
     nouvelDocumentation}
-    :{nouveauArticle:any,setNouveauArticle: (nouveauArticle: any) => void,
-    outil:any, etat:any,
-    nouveauOutils:any[], setNouveauOutils: React.Dispatch<React.SetStateAction<string[]>>,
+    :{nouveauArticle:projectProps,setNouveauArticle: (nouveauArticle: projectProps) => void,
+    outil:OutilProps[], etat:etatProps[],
+    nouveauOutils:OutilProps[], setNouveauOutils: React.Dispatch<React.SetStateAction<string[]>>,
     nouvelDocumentation:documentationProps[]}){
 
     return (

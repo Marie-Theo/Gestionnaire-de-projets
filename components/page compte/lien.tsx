@@ -1,11 +1,4 @@
-interface lienProps {
-    id:number;
-    site: {
-        id:number;
-        site:string;
-    } | null;
-    url:string;
-}
+import { lienProps } from "@/hooks/interface";
 
 export default function lien({props}:{props:{lien:lienProps[]}}) {
 

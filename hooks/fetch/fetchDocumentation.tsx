@@ -2,16 +2,7 @@
 
 import { supabase } from "@/lib/supabaseClient";
 
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
+import { documentationProps } from "@/hooks/interface";
 
 export default async function fetchDocumentation(id_article: number, setDocumentation: (documentation: documentationProps[]) => void){
 

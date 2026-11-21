@@ -1,37 +1,9 @@
 import ListingProjet from '@/components/page projects/listingProject';
 import Entete from '@/components/page projects/entete';
 
-interface projetProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-}[]
+import { documentationProps, projectProps, etatProps, OutilsProps, userProps } from "@/hooks/interface";
 
-interface OutilsProps {
-    id: number;
-    id_projet: number;
-    outil: {
-        name: any;
-    }[];
-}
-
-interface userProps {
-    id: number;
-    created_at: string;
-    name: string;
-    theme: string;
-}
-
-export default function index({props}:{props:{projets: projetProps[], outil: any, outils: OutilsProps[], etat: any, users: userProps[], lastProjets: projetProps[], setPage: (page: string) => void, setLastProjets: (lastProjets: any[]) => void, setArticle: (article: projetProps) => void,user:any, setDocumentation: (documentation: any[]) => void}}) {
+export default function index({props}:{props:{projets: projectProps[], outil: OutilsProps, outils: OutilsProps[], etat: etatProps[], users: userProps[], lastProjets: projectProps[], setPage: (page: string) => void, setLastProjets: (lastProjets: projectProps[]) => void, setArticle: (article: projectProps) => void,user:userProps, setDocumentation: (documentation: documentationProps[]) => void}}) {
 
     const { projets, outil, outils, etat, users, lastProjets, setPage, user, setLastProjets, setArticle, setDocumentation } = props;
 

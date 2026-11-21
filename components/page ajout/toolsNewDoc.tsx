@@ -1,15 +1,6 @@
 "use client"
 
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
+import { documentationProps } from "@/hooks/interface";
 
 export const tools = {
     InsertDoc: (nouvelDocumentation: documentationProps[], setNouvelDocumentation: (docs: documentationProps[]) => void, index: number) => {

@@ -3,16 +3,7 @@ import { useMemo } from "react";
 
 // Sommaire Réecrit et corigé par chatGPT
 
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
+import { documentationProps } from "@/hooks/interface";
 
 export default function Sommaire({documentation}:{documentation:documentationProps[]}){
 

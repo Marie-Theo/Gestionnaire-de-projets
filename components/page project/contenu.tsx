@@ -1,15 +1,6 @@
 import { Card } from "@/components/ui/card";
 
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
+import { documentationProps } from "@/hooks/interface";
 
 export default function Contante({documentation}:{documentation:documentationProps[]}){
 

@@ -3,31 +3,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import { NextRequest, NextResponse } from "next/server";
 
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
-
-interface projectProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-}
+import { documentationProps, projectProps } from "@/hooks/interface";
 
 export async function GET(request: NextRequest){
 

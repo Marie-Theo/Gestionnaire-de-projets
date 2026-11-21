@@ -3,28 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import BadgesOutils from "./components/badgesOutils";
 import { tools } from "@/components/tools";
 
-interface projectProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-}
-
-interface OutilsProps {
-    id: number;
-    id_project: number;
-    outil: {
-        name: string;
-    }[];
-}
+import { projectProps, OutilsProps } from "@/hooks/interface";
 
 export default function Project({project, outils}: {project: projectProps, outils: OutilsProps[]}) {
 
@@ -42,7 +21,7 @@ export default function Project({project, outils}: {project: projectProps, outil
                 </CardHeader>
                 <CardDescription className="pl-6 pr-5">&emsp;{''+project.presentation}</CardDescription>
                 <CardFooter className="absolute bottom-3 flex flex-wrap gap-1">
-                    <BadgesOutils id={id_project} outils={outils[0]} />
+                    <BadgesOutils id={id_project} outils={outils} />
                 </CardFooter>
             </Card>
         </a>

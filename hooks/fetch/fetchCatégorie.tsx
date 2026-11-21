@@ -2,12 +2,7 @@
 
 import { supabase } from "@/lib/supabaseClient";
 
-interface categorieProps {
-    id:number;
-    text:string;
-    ordre:number;
-    style:number;
-};
+import { categorieProps } from "@/hooks/interface";
 
 export default async function fetchCategorie(setCategorie: (categorie: categorieProps[]) => void){
 

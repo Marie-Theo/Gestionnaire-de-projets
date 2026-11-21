@@ -1,12 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 
-interface OutilsProps {
-    id: number;
-    id_projet: number;
-    outil: {
-        name: string;
-    }[];
-}
+import { OutilsProps } from "@/hooks/interface";
 
 export default function BadgesOutils({id,outils} : {id: number,outils : OutilsProps[]}) {
 

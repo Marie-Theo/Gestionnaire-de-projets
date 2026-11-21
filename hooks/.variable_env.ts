@@ -1,82 +1,25 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 
-interface projetProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-}
-
-interface OutilsProps {
-    id: number;
-    id_projet: number;
-    outil: {
-        name: any;
-    }[];
-}
-
-interface userProps {
-    id: number;
-    name: string;
-    mdp: string;
-    theme: string;
-    presentation:string;
-    created_at: string;
-}
-
-interface lienProps {
-    id:number;
-    site: {
-        id:number;
-        site:string;
-    } | null;
-    url:string;
-}
-
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
-
-interface categorieProps {
-    id:number;
-    text:string;
-    ordre:number;
-    style:number;
-};
+import { documentationProps, projectProps, etatProps, OutilsProps, OutilProps, userProps, lienProps, categorieProps } from "@/hooks/interface";
 
 
 export default function getProjet () {
-    const [projets, setProjets] = useState<projetProps[]>([]);
-    const [lastProjets, setLastProjets] = useState<projetProps[]>([]);
-    const [projetUser, setProjetUser] = useState<projetProps[]>([]);
-    const [etat, setEtat] = useState<any[]>([]);
-    const [outil, setOutil] = useState<any[]>([]);
+    const [projets, setProjets] = useState<projectProps[]>([]);
+    const [lastProjets, setLastProjets] = useState<projectProps[]>([]);
+    const [projetUser, setProjetUser] = useState<projectProps[]>([]);
+    const [etat, setEtat] = useState<etatProps[]>([]);
+    const [outil, setOutil] = useState<OutilProps[]>([]);
     const [outils, setOutils] = useState<OutilsProps[]>([]);
-    const [users, setUsers] = useState<any[]>([]);
+    const [users, setUsers] = useState<userProps[]>([]);
     const [user, setUser] = useState<userProps>({ id: 0, name: '', mdp: '', theme: '', presentation: '', created_at: '' });
     const id_user:number = user.id;
     const [page, setPage] = useState<string>("projets");//"Nouveaux""projets"
     const [lien, setLien] = useState<lienProps[]>([]);
-    const [article, setArticle] = useState<projetProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:true });
+    const [article, setArticle] = useState<projectProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:true });
     const [documentation, setDocumentation] = useState<documentationProps[]>([]);
     const [categorie,setCategorie] = useState<categorieProps[]>([]);
-    const [nouveauArticle, setNouveauArticle] = useState<projetProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:false });
+    const [nouveauArticle, setNouveauArticle] = useState<projectProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:false });
     const [nouvelDocumentation, setNouvelDocumentation] = useState<documentationProps[]>([{id: Date.now() + Math.random(),id_categorie:{id:0,text:'',ordre:0,style:1},text:''}]);
     const [nouveauOutils, setNouveauOutils] = useState<string[]>([]);
 
@@ -94,7 +37,7 @@ export default function getProjet () {
                 if (error) console.error(error);
                 else {
                     console.log(data);
-                    setProjets(data || []);
+                    setProjets(data ?? []);
                 };
         } else {
             const { data, error } = await supabase
@@ -107,7 +50,7 @@ export default function getProjet () {
                 if (error) console.error(error);
                 else {
                     console.log(data);
-                    setProjets(data || []);
+                    setProjets(data ?? []);
                 };
             }
         }
@@ -132,7 +75,7 @@ export default function getProjet () {
                 if (error) console.error(error);
                 else {
                     console.log(data);
-                    setLastProjets(data || []);
+                    setLastProjets(data ?? []);
                 };
         } else {
             const { data, error } = await supabase
@@ -146,7 +89,7 @@ export default function getProjet () {
                 if (error) console.error(error);
                 else {
                     console.log(data);
-                    setLastProjets(data || []);
+                    setLastProjets(data ?? []);
                 };
             }
         }
@@ -167,7 +110,7 @@ export default function getProjet () {
             if (error) console.error(error);
             else {
                 console.log(data);
-                setEtat(data || []);
+                setEtat(data ?? []);
             };
         }
 
@@ -186,7 +129,7 @@ export default function getProjet () {
             if (error) console.error(error);
             else {
                 console.log(data);
-                setOutil(data || []);
+                setOutil(data ?? []);
             };
         }
 
@@ -205,7 +148,7 @@ export default function getProjet () {
             if (error) console.error(error);
             else {
                 console.log(data);
-                setOutils(data || []);
+                setOutils(data ?? []);
             };
         }
 
@@ -224,7 +167,7 @@ export default function getProjet () {
             if (error) console.error(error);
             else {
                 console.log(data);
-                setUsers(data || []);
+                setUsers(data ?? []);
             };
         }
 

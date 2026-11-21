@@ -4,77 +4,17 @@ import { use, useEffect, useState } from "react";
 import Entete from "@/components/page ajout/Entete";
 import Contante from "@/components/page ajout/Contante";
 
-interface projetProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-};
-
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-};
-
-interface categorieProps {
-    id:number;
-    text:string;
-    ordre:number;
-    style:number;
-};
-
-interface OutilsProps {
-    id: number;
-    id_projet: number;
-    outil: { name: string }[];
-}
-
-interface documentationProps {
-    id: number;
-    id_categorie: {
-        id: number;
-        text: string;
-        ordre: number;
-        style: number;
-    };
-    text: string;
-}
-
-interface projectProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: { name: string; couleur: string };
-    id_user: number;
-    public: boolean;
-}
+import { documentationProps, projectProps, etatProps, OutilsProps, categorieProps } from "@/hooks/interface";
 
 export default function Pageproject({ params }: { params: Promise<{ ProjectId: string }>; }) {
     const ProjectId = params.value.ProjectId;
 
     const [id_user, setId_user] = useState<number | null>(null);
     
-    const [etat, setEtat] = useState<any[]>([]);
-    const [outil, setOutil] = useState<any[]>([]);
+    const [etat, setEtat] = useState<etatProps[]>([]);
+    const [outil, setOutil] = useState<OutilsProps[]>([]);
     const [categorie,setCategorie] = useState<categorieProps[]>([]);
-    const [nouveauArticle, setNouveauArticle] = useState<projetProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:[{ name:'', couleur:''}], id_user:0, public:false });
+    const [nouveauArticle, setNouveauArticle] = useState<projectProps>({ id:0, created_at:'', seen_at:'', title:'', presentation:'', repositories:'',etat:{ name:'', couleur:''}, id_user:0, public:false });
     const [nouvelDocumentation, setNouvelDocumentation] = useState<documentationProps[]>([{id: Date.now() + Math.random(),id_categorie:{id:0,text:'',ordre:0,style:1},text:''}]);
     const [nouveauOutils, setNouveauOutils] = useState<string[]>([]);
 

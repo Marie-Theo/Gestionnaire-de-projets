@@ -2,28 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { tools } from "@/components/tools";
 import BadgesOutils from "@/components/page projects/components/badgesOutils";
 
-interface OutilsProps {
-    id: number;
-    id_projet: number;
-    outil: {
-        name: string;
-    }[];
-}
-
-interface projectProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-}
+import { OutilsProps, projectProps } from "@/hooks/interface";
 
 export default function Titre({project, outils}:{project:projectProps,outils:OutilsProps[]}){
 

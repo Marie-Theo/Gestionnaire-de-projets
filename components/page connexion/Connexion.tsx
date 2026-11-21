@@ -11,40 +11,9 @@ import fetchProjetUser from "@/hooks/fetch/fetchProjetUser";
 import fetchLien from "@/hooks/fetch/fetchLien";
 import fetchCategorie from '@/hooks/fetch/fetchCatégorie';
 
-interface userProps {
-    id: number;
-    name: string;
-    mdp: string;
-    theme: string;
-    presentation:string;
-    created_at: string;
-}
+import { userProps, projectProps, lienProps, categorieProps } from "@/hooks/interface";
 
-interface projetProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-}
-
-interface lienProps {
-    id:number;
-    site: {
-        id:number;
-        site:string;
-    } | null;
-    url:string;
-}
-
-export default function Connexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: projetProps[]) => void, setLastProjets: (lastProjets: projetProps[]) => void, setProjetUser: (projetUser: lienProps[]) => void, setLien: (lien: lienProps[]) => void, setCategorie: (categorie: any[]) => void}}) {
+export default function Connexion({props}: {props:{ user:userProps, setUser: (user: userProps) => void, setPage: (page: string) => void, setProjets: (projets: projectProps[]) => void, setLastProjets: (lastProjets: projectProps[]) => void, setProjetUser: (projetUser: lienProps[]) => void, setLien: (lien: lienProps[]) => void, setCategorie: (categorie: categorieProps[]) => void}}) {
 
     const { user, setUser, setPage, setProjets, setLastProjets, setProjetUser, setLien, setCategorie } = props;
     const [Erreur_Formulaire_inscription, setErreur_Formulaire_inscription] = useState<any>('false');

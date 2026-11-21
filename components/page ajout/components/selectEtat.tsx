@@ -2,39 +2,20 @@
 
 import { useEffect, useState } from "react";
 
-interface projetProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: {
-        name: string,
-        couleur: string
-    };
-    id_user: number;
-    public: boolean;
-};
+import { projectProps, etatProps } from "@/hooks/interface";
 
-interface etatProps {
-    id:number;
-    name:string;
-    couleur:string;
-};
-
-export default function SelectList({ props }: { props: { nouveauArticle: projetProps, etat:etatProps[] } }) {
+export default function SelectList({ props }: { props: { nouveauArticle: projectProps, etat:etatProps[] } }) {
 
     const { nouveauArticle, etat } = props;
 
-    const [etatSelect, setEtatSelect] = useState<string>(nouveauArticle.etat[0].name);
+    const [etatSelect, setEtatSelect] = useState<string>(nouveauArticle?.etat.name);
 
 
     // Initialisation propre
     useEffect(() => {
-        if (nouveauArticle.etat[0]?.name) {
-            setEtatSelect(nouveauArticle.etat[0].name);
-        } else if (etat.length > 0) {
+        if (nouveauArticle?.etat?.name) {
+            setEtatSelect(nouveauArticle.etat.name);
+        } else if (etat?.length > 0) {
             setEtatSelect(etat[0].name);
         }
     }, [etat, nouveauArticle]);
@@ -42,10 +23,10 @@ export default function SelectList({ props }: { props: { nouveauArticle: projetP
     function selectChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
         const value = e.target.value;
         setEtatSelect(value);
-        nouveauArticle.etat[0].name = value ;
+        nouveauArticle.etat.name = value ;
 
         const x : any = etat.find((element:any)=> element.name == value)?.couleur;
-        nouveauArticle.etat[0].couleur = x;
+        nouveauArticle.etat.couleur = x;
     }
 
     const colors = {
@@ -61,19 +42,19 @@ export default function SelectList({ props }: { props: { nouveauArticle: projetP
         indigo: 'bg-indigo-100 border-indigo-400 text-indigo-900'
     };
 
-    if (nouveauArticle.etat[0].name == '' && etat.length > 0 ) {
-        nouveauArticle.etat[0].name = etat[0].name;
+    if (nouveauArticle?.etat.name == '' && etat.length > 0 ) {
+        nouveauArticle.etat.name = etat[0].name;
         setEtatSelect(etat[0].name);
-        nouveauArticle.etat[0].couleur = etat[0].couleur;
+        nouveauArticle.etat.couleur = etat[0].couleur;
     }
     
     return (
         <select
         value={etatSelect}
         onChange={(e)=>{selectChangeHandler(e);}}
-        className={'inline-flex items-center justify-center rounded-full border px-0.5 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden [a&]:hover:bg-accent [a&]:hover:text-accent-foreground ml-1 ' + colors[etat.find((element:any)=> element.name == etatSelect)?.couleur as keyof typeof colors]}
+        className={'inline-flex items-center justify-center rounded-full border px-0.5 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden [a&]:hover:bg-accent [a&]:hover:text-accent-foreground ml-1 ' + colors[etat?.find((element:any)=> element.name == etatSelect)?.couleur as keyof typeof colors]}
         >
-        {etat.map((element)=>(
+        {etat?.map((element)=>(
             <option key={element.id} value={element.name} className={colors[etat.find((etatElement:any)=> etatElement.name == element.name)?.couleur as keyof typeof colors]}>{element.name}</option>
         ))}
         </select>

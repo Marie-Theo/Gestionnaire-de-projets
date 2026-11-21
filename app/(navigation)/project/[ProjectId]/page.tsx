@@ -4,36 +4,10 @@ import { useEffect, useState } from "react";
 import Entete from "@/components/page project/entete";
 import Contante from "@/components/page project/contenu";
 
-interface OutilsProps {
-    id: number;
-    id_projet: number;
-    outil: { name: string }[];
-}
+import { documentationProps, projectProps, OutilsProps } from "@/hooks/interface";
 
-interface documentationProps {
-    id: number;
-    id_categorie: {
-        id: number;
-        text: string;
-        ordre: number;
-        style: number;
-    };
-    text: string;
-}
-
-interface projectProps {
-    id: number;
-    created_at: string;
-    seen_at: string;
-    title: string;
-    presentation: string;
-    repositories: string;
-    etat: { name: string; couleur: string };
-    id_user: number;
-    public: boolean;
-}
-
-export default function Pageproject({ params }: { params: Promise<{ value:{projectId: string} }>; }) {
+export default function Pageproject({ params }: { params: { value : { ProjectId: string }} }) {
+    console.log(params);
     const projectId = params.value.ProjectId;
 
     const [id_user, setId_user] = useState<number | null>(null);

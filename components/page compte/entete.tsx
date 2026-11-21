@@ -1,23 +1,7 @@
 import PresentationUser from "@/components/page compte/PresentationUser";
 import Lien from "@/components/page compte/lien";
 
-interface userProps {
-    id: number;
-    name: string;
-    mdp: string;
-    theme: string;
-    presentation:string;
-    created_at: string;
-}
-
-interface lienProps {
-    id:number;
-    site: {
-        id:number;
-        site:string;
-    } | null;
-    url:string;
-}
+import { userProps, lienProps } from "@/hooks/interface";
 
 export default function Entete({props}:{props:{lien:lienProps[],user:userProps}}){
 

@@ -6,23 +6,7 @@ import { tools } from "@/components/page ajout/toolsNewDoc";
 import ChoixCategorie from "@/components/page ajout/components/choixCatégorie";
 import InputText from "@/components/page ajout/components/inputText";
 
-interface documentationProps {
-    id:number;
-    id_categorie:{
-        id:number;
-        text:string;
-        ordre:number;
-        style:number;
-    };
-    text:string;
-}
-
-interface categorieProps {
-    id:number;
-    text:string;
-    ordre:number;
-    style:number;
-};
+import { documentationProps, categorieProps } from "@/hooks/interface";
 
 export default function contante({props}:{props:{nouvelDocumentation:documentationProps[], setNouvelDocumentation: Dispatch<SetStateAction<documentationProps[]>>,categorie:categorieProps[],setCategorie: Dispatch<SetStateAction<categorieProps[]>>}}){
 
