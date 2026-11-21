@@ -3,7 +3,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request, response: Response) {
+export async function GET(request: NextRequest) {
     
     const url = new URL(request.url);
 
@@ -23,7 +23,7 @@ export async function GET(request: Request, response: Response) {
             console.error(error);
         }
         else {
-            return Response.json(data);
+            return NextResponse.json(data, { status: 200 });
         };
     } else {
         const { data, error } = await supabase
@@ -38,7 +38,7 @@ export async function GET(request: Request, response: Response) {
             console.error(error);
         }
         else {
-            return Response.json(data);
+            return NextResponse.json(data, { status: 200 });
         };
     }
 } 

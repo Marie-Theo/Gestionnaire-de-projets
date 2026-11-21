@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Entete from "@/components/page project/entete";
 import Contante from "@/components/page project/contenu";
 
@@ -33,8 +33,8 @@ interface projectProps {
     public: boolean;
 }
 
-    export default function Pageproject({ params }: { params: Promise<{ projectId: string }>; }) {
-        const { projectId } = use(params); // pas besoin d'await ici, un Client Component reçoit des props "normales"
+export default function Pageproject({ params }: { params: Promise<{ value:{projectId: string} }>; }) {
+    const projectId = params.value.ProjectId;
 
     const [id_user, setId_user] = useState<number | null>(null);
     const [project, setProject] = useState<projectProps[] | null>(null);

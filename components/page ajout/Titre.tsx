@@ -43,21 +43,26 @@ export default function Titre({props}:{props:{nouveauArticle:projetProps, setNou
 
     let tableau:string[] = [];
 
-    outil.forEach(element => {
+    outil?.forEach(element => {
         tableau.push(element.name);
     });
 
     return(
-        <div className="col-span-3 xl:col-span-2 pr-5">
-            <title>{ nouveauArticle.title != '' ?nouveauArticle.title:"Création d'un projet"}</title>
-            <div className="flex-none content-center flex gap-1 flex items-center">
-                <InputTitle props={{nouveauArticle}}/>
-                <SelectBadges nouveauOutils={nouveauOutils} outils={tableau} setNouveauOutils={setNouveauOutils} /> 
-                <SelectList props={{nouveauArticle,etat}} />
-                <Select props={{nouveauArticle}} />
-            </div>
-            <InputDesc props={{nouveauArticle}}/>
-            <InputRepo props={{nouveauArticle}}/>
-        </div>
+        <div>
+            { nouveauArticle? (
+                <div className="col-span-3 xl:col-span-2 pr-5">
+                    <title>{ nouveauArticle?.title ? nouveauArticle.title:"Création d'un projet"}</title>
+                    <div className="flex-none content-center gap-1 flex items-center">
+                        <InputTitle props={{nouveauArticle}}/>
+                        <SelectBadges nouveauOutils={nouveauOutils} outils={tableau} setNouveauOutils={setNouveauOutils} /> 
+                        <SelectList props={{nouveauArticle,etat}} />
+                        <Select props={{nouveauArticle}} />
+                    </div>
+                    <InputDesc props={{nouveauArticle}}/>
+                    <InputRepo props={{nouveauArticle}}/>
+                </div>
+            ):(null)
+        }
+    </div>
     );
 }

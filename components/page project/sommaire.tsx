@@ -19,7 +19,7 @@ export default function Sommaire({documentation}:{documentation:documentationPro
     const categoriesUniques = useMemo(() => {
         const seen = new Set<string>();
 
-        return documentation.filter((categorie) => {
+        return documentation?.filter((categorie) => {
         const text = categorie.id_categorie.text;
 
         if (seen.has(text) || text == "") return false;
@@ -29,14 +29,14 @@ export default function Sommaire({documentation}:{documentation:documentationPro
         });
     }, [documentation]);
 
-    if (documentation.length === 0) return null;
+    if (documentation?.length === 0) return null;
 
     return (
         <Card className="col-span-3 md:col-span-2 xl:col-span-1 p-5 pt-4 gap-0 h-min">
         <h1 className="text-xl">Sommaire :</h1>
 
         <div className="pl-3">
-            {categoriesUniques.map((categorie) => {
+            {categoriesUniques?.map((categorie) => {
                 const text = categorie.id_categorie.text;
                 return (
                     <div key={categorie.id}>

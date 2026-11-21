@@ -67,7 +67,7 @@ interface projectProps {
 }
 
 export default function Pageproject({ params }: { params: Promise<{ ProjectId: string }>; }) {
-    const { ProjectId } = use(params); // pas besoin d'await ici, un Client Component reçoit des props "normales"
+    const ProjectId = params.value.ProjectId;
 
     const [id_user, setId_user] = useState<number | null>(null);
     

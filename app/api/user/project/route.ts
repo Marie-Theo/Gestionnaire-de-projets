@@ -3,7 +3,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request, response: Response){
+export async function GET(request: NextRequest){
 
     const url = new URL(request.url);
 
@@ -16,7 +16,7 @@ export async function GET(request: Request, response: Response){
             .eq("id_user", id_user);
         if (error) console.error(error);
         else {
-            return Response.json(data);
+            return NextResponse.json(data, { status: 200 });
         };
     }
 }

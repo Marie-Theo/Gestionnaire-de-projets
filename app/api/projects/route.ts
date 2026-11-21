@@ -29,7 +29,7 @@ interface projectProps {
     public: boolean;
 }
 
-export async function GET(request: Request, response: Response){
+export async function GET(request: NextRequest){
 
     const url = new URL(request.url);
 
