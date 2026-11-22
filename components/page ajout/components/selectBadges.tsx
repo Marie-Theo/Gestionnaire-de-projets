@@ -4,19 +4,18 @@
 
 import { Dispatch, SetStateAction, useState, useEffect } from "react"
 import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList, ComboboxChips, ComboboxValue, ComboboxChipsInput, ComboboxChip, useComboboxAnchor } from "@/components/ui/combobox";
-export default function SelectBadges({ nouveauOutils, outils, setNouveauOutils}: {  nouveauOutils: string[],  outils: string[],  setNouveauOutils: Dispatch<SetStateAction<string[]>>}) {
+export default function SelectBadges({ nouveauOutils, outils, setNouveauOutils}: { nouveauOutils: string[],  outils: string[],  setNouveauOutils: Dispatch<SetStateAction<string[]>>}) {
 
     const anchor = useComboboxAnchor()
   
     const [items, setItems] = useState<string[]>([])
 
     useEffect(() => {
-    if (outils.length > 0) {
-        setItems(prev => {
-        const merged = [...new Set([...prev, ...outils])]
-        return merged
-        })
-    }
+        if (outils.length > 0) {
+            setItems(prev => { 
+            return [...new Set([...prev, ...outils])]
+            })
+        }
     }, [outils])
 
     function handleCreate(value: string) {

@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 
 import { projectProps, etatProps } from "@/hooks/interface";
 
-export default function SelectList({ props }: { props: { nouveauArticle: projectProps, etat:etatProps[] } }) {
-
-    const { nouveauArticle, etat } = props;
+export default function SelectList({ props: { nouveauArticle, etat } }: { props: { nouveauArticle: projectProps, etat:etatProps[] } }) {
 
     const [etatSelect, setEtatSelect] = useState<string>(nouveauArticle?.etat.name);
 

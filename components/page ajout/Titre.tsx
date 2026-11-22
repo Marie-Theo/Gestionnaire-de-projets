@@ -1,6 +1,6 @@
 "use client"
 
-import { Dispatch, SetStateAction, useEffect } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import Select from '@/components/page ajout/components/select';
 import SelectList from '@/components/page ajout/components/selectEtat';
 import SelectBadges from '@/components/page ajout/components/selectBadges';
@@ -10,16 +10,14 @@ import InputDesc from '@/components/page ajout/components/inputDesc';
 
 import { projectProps, etatProps, OutilProps } from "@/hooks/interface";
 
-export default function Titre({props}:{props:{nouveauArticle:projectProps, setNouveauArticle: (nouveauArticle: projectProps) => void, outil:OutilProps[], etat:etatProps[], nouveauOutils:any[], setNouveauOutils: Dispatch<SetStateAction<string[]>> }}){
+export default function Titre({props:{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils}}:{props:{nouveauArticle:projectProps, setNouveauArticle: (nouveauArticle: projectProps) => void, outil:OutilProps[], etat:etatProps[], nouveauOutils:any[], setNouveauOutils: Dispatch<SetStateAction<string[]>> }}){
 
-    const {nouveauArticle,setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils} = props;
-
-    let tableau:string[] = [];
+    const [tableau, setTableau] = useState<string[]>([])
 
     useEffect(()=>{
-        if (outil!=0){
+        if (outil.length!=0){
             outil?.forEach(element => {
-                tableau.push(element.name);
+                setTableau((tab)=>{return [...tab, element.name]})
             });
         }
     },[outil])

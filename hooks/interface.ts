@@ -22,6 +22,7 @@ interface OutilsProps {
 };
 
 interface OutilProps {
+    id?: number;
     name: string;
 };
 

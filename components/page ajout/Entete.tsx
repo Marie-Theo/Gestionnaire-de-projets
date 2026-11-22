@@ -5,14 +5,11 @@ import { documentationProps } from "@/hooks/interface";
 import { projectProps, etatProps, OutilProps } from "@/hooks/interface";
 
 export default function Entete(
-    {nouveauArticle, setNouveauArticle,
-    outil, etat,
-    nouveauOutils, setNouveauOutils,
-    nouvelDocumentation}
-    :{nouveauArticle:projectProps,setNouveauArticle: (nouveauArticle: projectProps) => void,
+    {props:{nouveauArticle, setNouveauArticle, outil, etat, nouveauOutils, setNouveauOutils, nouvelDocumentation, setNouvelDocumentation}}
+    :{props:{nouveauArticle:projectProps,setNouveauArticle: (nouveauArticle: projectProps) => void,
     outil:OutilProps[], etat:etatProps[],
     nouveauOutils:OutilProps[], setNouveauOutils: React.Dispatch<React.SetStateAction<string[]>>,
-    nouvelDocumentation:documentationProps[]}){
+    nouvelDocumentation:documentationProps[], setNouvelDocumentation: React.Dispatch<React.SetStateAction<documentationProps[]>>}}){
 
     return (
         <div className="grid grid-cols-3 gap-5 xl:gap-1">
